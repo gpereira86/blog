@@ -1,0 +1,30 @@
+<footer class="footer pt-3">
+
+    <div class="cotainer-fluid">
+        <div class="row text-muted copyright">
+            <div class="col-6 text-start">
+                <small class="mb-0">
+                    &copy; {{"now"|date("Y")}} - {{constant('SITE_NOME')}}. Todos os direitos reservados.
+                </small>
+            </div>
+
+            <div class="col-6 text-end">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-muted text-decoration-none" href="{{url('')}}" data-toggle="tooltip" title="Administração de Posts">
+                            Posts                          
+                        </a>
+                       
+                        <a class="text-muted text-decoration-none" href="{{url('')}}" data-toggle="tooltip" title="Administração de Categorias">
+                            Categorias                       
+                        </a>
+                        
+                        <a class="text-muted text-decoration-none" href="{{url('')}}" data-toggle="tooltip" title="Administração de Usuários">
+                            Usuários               
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

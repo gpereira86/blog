@@ -1,0 +1,30 @@
+{
+    "name": "ceounset/cursophp8",
+    "description": "Curso de PHP 8",
+    "type": "proect",
+    "autoload": {
+        "psr-4": {
+            "sistema\\": "sistema/"
+        },
+        "files":[
+            "sistema/configuracao.php"
+        ]
+        
+    },
+    "authors": [
+        {
+            "name": "Glauco Pereira",
+            "email": "eu@glaucopereira.com",
+            "homepage": "https://www.glaucopereira.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    "php": ">=8.0",
+        "twig/twig": "^3.0",
+        "nikic/fast-route": "^2.0@dev"
+    }
+    
+    
+}

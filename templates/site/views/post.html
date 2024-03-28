@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block conteúde %} 
+
+<div class="container my-5">
+    
+    <div class="row">
+    
+        <div class="col-lg-9 mb-4">
+            <h1>{{post.titulo}}</h1>
+            <p>{{post.texto}}</p>
+        </div>
+
+        <div class="col-lg-3 mb-4">
+            {%include'sidebar.html'%}
+        </div>   
+        
+    </div> 
+</div>  
+
+{% endblock %}

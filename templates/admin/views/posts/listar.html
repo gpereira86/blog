@@ -1,0 +1,48 @@
+{% extends 'dashboard.html' %}
+
+{% block conteudo %}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white border-0">
+        <h5 class="card-title">Posts</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">TÍTULO</th>
+                        <th scope="col" class="text-center">STATUS</th>
+                        <th scope="col">AÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <th>{{post.id}}</th>
+                        <td>{{post.titulo}}</td>
+                        <td class="text-center">
+                            {% if post.status == 1 %}
+                                <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
+                            {% endif %}
+                        </td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+        
+        
+    </div>
+
+</div>
+
+{% endblock %}

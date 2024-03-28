@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+
+    <div class="wrapper">
+        <!-- Menu -->
+        <div class="menu">
+            {% include 'menu.html' %}
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Topo -->
+            {% include 'topo.html' %}
+            
+            <main>
+                {% block conteudo %}
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title">Dashboard</h5>
+                    </div>
+                    <div class="card-body">
+                        Conteúdo em desenvolvimento
+                    </div>
+                </div>
+                {% endblock %}
+            </main>
+        </div>
+        
+        <div class="footer">
+            {% include 'rodape.html'%}
+        </div>
+        
+    </div>
+
+
+{% endblock %}
+
+
+

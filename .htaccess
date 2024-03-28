@@ -1,0 +1,16 @@
+#adicionar comentário
+Options -indexes
+
+RewriteEngine On
+
+RewriteBase /blog/
+
+# Verifica se a solicitação está dentro do diretório raiz ou das subpastas do projeto
+#RewriteCond %{REQUEST_URI} !^/blog/
+#RewriteRule ^ - [R=404,L]
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-l
+
+RewriteRule ^(.*)$ index.php/$1

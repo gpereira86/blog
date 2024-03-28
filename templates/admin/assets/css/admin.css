@@ -1,0 +1,79 @@
+/* styles.css */
+
+/* Color for Nav Itens hover */
+.nav-item a.nav-link:hover {
+    color: #ffffff; /* Cor para hover e focus */
+    background-color: #007bff; /* Cor de fundo para hover e active */
+}
+
+/* Hidden itens */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+.wrapper {
+     display: flex; /* Ativa o layout flexível */
+     height: 100vh; /* Define a altura total da página */
+ }
+
+ .menu {
+     width: 280px; /* Largura do menu */
+     background-color: #333; /* Cor de fundo do menu */
+ }
+
+ .main-content {
+     flex: 1; /* Ocupa o restante do espaço disponível */
+     overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+ }
+
+ /* Estilos para o topo */
+ header {
+     background-color: #fff; /* Cor de fundo do topo */
+     padding: 10px; /* Espaçamento interno */
+     border-bottom: 1px solid #ccc; /* Borda inferior */
+ }
+
+ /* Estilos para o conteúdo principal */
+ main {
+     padding: 20px; /* Espaçamento interno do conteúdo */
+ }
+ 
+.header-container {
+   display: flex;
+   justify-content: flex-end; /* Alinha os itens no início e no final do header */
+   align-items: center; /* Alinha verticalmente os itens ao centro */
+   padding: 10px; /* Espaçamento interno do header */
+   border-bottom: 1px solid #ccc; /* Borda inferior */
+}
+
+.btn-group {
+   margin-bottom: 0; /* Remove o espaçamento inferior */
+}
+
+.height-menus-b{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Estilos para o footer */
+.footer {
+  position: fixed;
+  width: calc(100% - 280px); /* Largura da página menos a largura do menu */
+  bottom: 0;
+  right: 0; /* Alinha o footer à direita */
+  color: #fff;
+  padding: 10px;
+  z-index: 100;
+}
+
+.footer ul.list-inline li a {
+  margin-right: 15px; /* Ajuste o valor conforme necessário para o espaçamento desejado */
+}

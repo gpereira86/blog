@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block conteúde %} 
+
+
+<div class="container my-5 col">
+    
+    <div class="row">
+        
+        <div class="col-lg-10 col-md-12">
+            
+            <div class="row">   
+                {% for post in posts %}
+                <div class ="col-md-6 mb-4">
+
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <a href="{{url('post/'~post.id)}}" data-toggle="tooltip" title="{{post.titulo}}" class="text-dark text-decoration-none">
+                                <h5 class="card-title">{{post.titulo}}</h5>
+                                <p class="card-text">{{resumirTexto(post.texto, 150)}}</p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                
+                {%endfor%}
+
+            </div> 
+        </div> 
+            
+            <div class="col-lg-2">
+                {%include'sidebar.html'%}
+            </div>             
+    
+    </div>        
+            
+
+</div>  
+
+{% endblock %}

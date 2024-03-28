@@ -1,0 +1,15 @@
+<h4 class="text-center fw-bold">
+    Categorias
+</h4>
+
+
+<ul class="list-group list-group-flush justify-content-end">
+
+    {% for categoria in categorias %}
+
+    <li class="list-group-item list-group-item-action"><a href="{{url('categoria/'~categoria.id)}}" class="text-decoration-none text-black">{{categoria.titulo}}</a></li>
+
+    {%endfor%}
+
+</ul>
+
