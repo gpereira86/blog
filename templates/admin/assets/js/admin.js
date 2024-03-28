@@ -1,15 +1,10 @@
-/* Hidden menu */
-document.addEventListener("DOMContentLoaded", function() {
-    const menuButton = document.getElementById('menu-button');
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.querySelector('.menu');
-
-    menuButton.addEventListener('click', function() {
-        menuToggle.checked = !menuToggle.checked; // Inverte o estado do input ao clicar no botão
-        if (menuToggle.checked) {
-            menu.classList.add('minimized'); // Adiciona a classe 'minimized' para minimizar o menu
-        } else {
-            menu.classList.remove('minimized'); // Remove a classe 'minimized' para restaurar o menu
-        }
-    });
+$(document).ready(function(){
+  // Adiciona o evento de clique no corpo da página
+  $('body').on('click', function(e){
+    // Verifica se o clique não foi dentro do menu
+    if (!$(e.target).closest('.menu').length) {
+      // Desmarca o input checkbox do menu
+      $('#button-menu').prop('checked', false);
+    }
+  });
 });

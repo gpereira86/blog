@@ -1,8 +1,46 @@
-<div class="sidebar">
-    <input type="checkbox" id="menu-toggle" class="visually-hidden" />
+<input type="checkbox" class="menu-faketrigger" id="button-menu" />
+<!-- O "macete" do gatilho falso (faketrigger) somente funciona para itens na mesma hierarquia do input onde o chekbox está -->
 
-    <div class="sidebar-container height-menus-b">
+<div class="menu-lines" id="menu">    
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<ul>
+    <li>
+        <a href="{{url('admin/dashboard')}}">
+            <div>
+                <i class="fa-solid fa-house"></i> {{constant('SITE_NOME')}}
+            </div>            
+        </a>
+        <hr>
+    <li>
+    <li>
+        <a href="{{url('admin/posts/listar')}}">
+            <i class="fa-solid fa-file-pen"></i>Posts
+        </a>
+    </li>
+    <li>
+        <a href="{{url('admin/categorias/listar')}}">
+            <i class="fa-solid fa-list"></i> Categorias
+        </a>
+    </li>
+    <li>
+        <a href="">
+            <i class="fa-solid fa-users"></i>Usuários
+        </a>
+        <hr>
+    </li>
+</ul>
+
+    
+
+<!--    <div class="sidebar-container height-menus-b">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            
+            
+            
             <div class="sidebarLogo">
                 <a class="text-decoration-none text-white" href="{{url('admin/dashboard')}}" data-bs-toggle="tooltip" title="Página Inicial">
                     <div class="logo text-decoration-none text-white">
@@ -25,7 +63,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('admin/usuarios/listar')}}" class="nav-link text-decoration-none text-white" aria-current="page">
+                    <a href="" class="nav-link text-decoration-none text-white" aria-current="page">
                         <i class="fa-solid fa-users"></i>
                         Usuários
                     </a>
@@ -33,6 +71,12 @@
             </ul>
             <hr>
         </div>
-    </div>
-</div>
+    </div>-->
+
+
+
+
+ 
+
+
   

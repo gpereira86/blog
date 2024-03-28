@@ -1,0 +1,105 @@
+
+/*Corpo total da main*/
+main{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+/*Afastar o menu das bordas (fake icone))*/
+.menu{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+/*posiciona e torna transparente o input checkbox que será usado para fazer o abre e fecha hambusguer*/
+.menu .menu-faketrigger{
+    position: absolute;
+    z-index: 1000;
+    width: 35px;
+    height: 35px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/*tamanho total que o menu (ícone) vai ocupar 3 linhas de 5px por 35px e 2 espaços de 10px */
+.menu .menu-lines {
+    position: absolute;
+    z-index: 999;
+    width: 35px;
+    height: 35px;
+       
+}
+
+/*Desenho do ícone do menu em si*/
+.menu .menu-lines span{
+    display: block;
+    width: 35px;
+    height: 5px;
+    margin-bottom: 10px;
+    background-color: #CDCDCD;
+    border-radius: 3px;
+    transition: all ease .2s;
+}
+
+/*Cor do icone hamburguer e sua transformação em X logo abaixo*/
+.menu .menu-faketrigger:checked ~.menu-lines span{
+    background: #232323;
+}
+
+/*Cada um dos Spans que formam o hamburguer*/
+.menu .menu-faketrigger:checked ~.menu-lines span:nth-child(1){
+    transform-origin: 0% 0%;
+    transform: rotate(45deg) scaleX(1.25);
+}
+.menu .menu-faketrigger:checked ~.menu-lines span:nth-child(2){
+    opacity: 0;
+}
+.menu .menu-faketrigger:checked ~.menu-lines span:nth-child(3){
+    transform-origin: 0% 100%;
+    transform: rotate(-45deg) scaleX(1.25);
+}
+
+/* Escondendo menu*/
+.menu ul{
+    position: absolute;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: calc(100vh - 40px);
+    padding-top: 100px;
+    background-color: #EDEDED;
+    margin-left: -300px;
+    transition: all ease .2s;
+}
+
+/*Zerando margin da ul*/
+.menu .menu-faketrigger:checked ~ ul{
+    margin-left: 0;    
+}
+
+/*Afastando menu entre si*/
+.menu ul li{
+    padding: 10px 30px;
+}
+
+/*estilando menu ao aparecer*/
+.menu ul li a{
+    text-decoration: none;
+    color: #000;
+    font-size: 22px;
+    transition: all ease .3s;
+}
+
+/*Cor do menua ao passar o mouse*/
+.menu ul li a:hover{
+    color: #999;
+}

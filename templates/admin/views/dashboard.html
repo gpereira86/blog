@@ -2,34 +2,38 @@
 
 {% block corpo %}
 
-    <div class="wrapper">
+    <div>
         <!-- Menu -->
-        <div class="menu">
+        
+        
+        <nav class="menu">
             {% include 'menu.html' %}
-        </div>
+        </nav>
 
         <!-- Conteúdo principal -->
-        <div class="main-content">
+        <div>
             <!-- Topo -->
             {% include 'topo.html' %}
             
-            <main>
-                {% block conteudo %}
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-white border-0">
-                        <h5 class="card-title">Dashboard</h5>
+            <main >
+                <div class="main-content">
+                    {% block conteudo %}
+                    <div class="card border-0 shadow-sm ">
+                        <div class="card-header bg-white border-0">
+                            <h5 class="card-title">Dashboard</h5>
+                        </div>
+                        <div class="card-body">
+                            Conteúdo em desenvolvimento
+                        </div>
                     </div>
-                    <div class="card-body">
-                        Conteúdo em desenvolvimento
-                    </div>
+                    {% endblock %}
                 </div>
-                {% endblock %}
             </main>
         </div>
         
-        <div class="footer">
+        <footer>
             {% include 'rodape.html'%}
-        </div>
+        </footer>
         
     </div>
 
