@@ -2,40 +2,41 @@
 
 {% block corpo %}
 
-    <div>
-        <!-- Menu -->
-        
-        
-        <nav class="menu">
-            {% include 'menu.html' %}
-        </nav>
+<div>
+    <!-- Menu -->
+    <nav class="menu">
+        {% include 'menu.html' %}
+    </nav>
 
-        <!-- Conteúdo principal -->
-        <div>
-            <!-- Topo -->
-            {% include 'topo.html' %}
-            
-            <main >
-                <div class="main-content">
-                    {% block conteudo %}
-                    <div class="card border-0 shadow-sm ">
-                        <div class="card-header bg-white border-0">
-                            <h5 class="card-title">Dashboard</h5>
-                        </div>
-                        <div class="card-body">
-                            Conteúdo em desenvolvimento
-                        </div>
-                    </div>
-                    {% endblock %}
+</div>    
+
+
+<!-- Topo -->
+{% include 'topo.html' %}
+ 
+
+<!-- Conteúdo principal -->
+<div>          
+
+    <main >
+        <div class="main-content">
+            {% block conteudo %}
+            <div class="card border-0 shadow-sm ">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title">Dashboard</h5>
                 </div>
-            </main>
+                <div class="card-body">
+                    Conteúdo em desenvolvimento
+                </div>
+            </div>
+            {% endblock %}
         </div>
-        
-        <footer>
-            {% include 'rodape.html'%}
-        </footer>
-        
-    </div>
+    </main>
+</div>
+
+<footer>
+    {% include 'rodape.html'%}
+</footer>
 
 
 {% endblock %}

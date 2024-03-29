@@ -1,26 +1,35 @@
-<header>
-    <h3 id="titulo">Painel Administrativo</h3>
-    <div class="btn-group mb-2 shadow-sm">
-        <button type="button" class="btn bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-            <i class="fa-solid fa-user me-2"></i> Glauco Pereira
-        </button>
 
-        <ul class="dropdown-menu dropdown-menu-lg-end">
-            <li>
-                <a class="dropdown-item text-black" href="#" data-bs-toggle="tooltip" title="Perfil">
-                    Perfil
-                </a>
-            </li>
+<div class="titulo-topo">
+    <h3>Painel Administrativo</h3>
+</div>
 
-            <li>
-                <a class="dropdown-item text-danger" href="#" data-bs-toggle="tooltip" title="Sair do Sistema">
-                    Sair
-                </a>
-            </li>
-        </ul>
-    </div>  
-    
-    
-</header>
+<div class="dropdown-div">
+    <div class="dropdown-menu-nav">
+        <div class="dropdown-menuToggle"></div>
+        <div class="dropdown-perfil">
+            <h3>Glauco Pereira<br><span>Backend</span></h3>
 
+            <div class="imgCx">
+                <img src="{{ url('templates/admin/assets/img/img.jpg') }}" alt=""/>
+            </div>
+        </div>
 
+        <div class="dropdown-menu">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa-regular fa-circle-user"></i>
+                        Perfil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Deslogar
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

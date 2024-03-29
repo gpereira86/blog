@@ -5,52 +5,46 @@
     margin:0;
     padding: 0;
     list-style:none;
+    box-sizing: border-box;
 }
 
 /*Cores e fontes do corpo todo*/
 body{
-    font-family: Arial, Helvetica, sans-serif;
-}
-
- .main-content {
-     flex: 1;  /*Ocupa o restante do espaço disponível */
-     overflow-y: auto;  /*Adiciona barra de rolagem vertical se necessário*/ 
-     width: 100%;
-     padding: 100px 100px;
- }
-
-header{
     display: flex;
-    justify-content: flex-end;
+    min-height: 100vh;
+    font-family: 'Century Gothic', sans-serif;
 }
 
-h3#titulo{
+.main-content {
+    flex: 1;  /* Ocupa o restante do espaço disponível */
+    overflow-y: auto;  /*Adiciona barra de rolagem vertical se necessário */
+    width: 100%;
+    padding: 100px 100px;
+}
+
+/* Estilo para o cabeçalho */
+.titulo-topo{
     position: absolute;
     top: 40px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 28px; /* Tamanho da fonte, ajuste conforme necessário */
-    font-weight: bold; /* Peso da fonte, ajuste conforme necessário */
+    font-size: 28px; /*Tamanho da fonte, ajuste conforme necessário*/
+    font-weight: bold; /*Peso da fonte, ajuste conforme necessário*/
 }
 
 
 footer {
   position: fixed;
-  background:#EDEDED;
+  background:#fff;
   width: 100%; /* Largura da página menos a largura do menu */
   height: 40px;
   bottom: 0;
   left: 0; /* Alinha o footer à direita */
   padding: 10px;
   z-index: 100;
+  box-shadow: 10px 0 10px rgba(0,0,0,.1);
 }
 
 .espacar {
 margin-right: 15px;  /*Ajuste o valor conforme necessário para o espaçamento desejado*/
-}
-
-#contentadmin{
-    padding: 40px!important;
-    display: flex !important;
-    justify-content: flex-end !important;
 }

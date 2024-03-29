@@ -1,0 +1,200 @@
+/* Reset HTML */
+/**{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+    font-family: 'Century Gothic', sans-serif;
+}*/
+
+/* Configurando todo corpo */
+.dropdown-div{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+    font-family: 'Century Gothic', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    z-index: 2;
+    
+}
+
+
+@media only screen and (max-width: 948px) {
+    .dropdown-div{
+        margin: 0;
+        padding: 0;
+        border: none;
+        font-family: 'Century Gothic', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        z-index: 2;
+
+    }
+}
+
+
+/* Configurando os menus de navegação */
+.dropdown-menu-nav {
+    position: absolute;
+    top: 40px;
+    right:40px;
+    width: 300px;
+    height: 35px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: #fff;
+    
+}
+
+@media only screen and (max-width: 948px) {
+    .dropdown-menu-nav {
+        position: absolute;
+        top: 40px;
+        right:40px;
+        width: 60px;
+        height: 35x;
+        border: none;
+        padding: 5px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;        
+    }
+}
+
+
+/* Posicionando o menu dropdown a direita */
+.dropdown-menu-nav .dropdown-perfil{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none; /* Não deixa user selecionar texto */
+    
+}
+
+/* Estilizando o H3 (título do menu dropdown) */
+.dropdown-menu-nav .dropdown-perfil h3{
+    text-align: end;
+    padding-top: 15px;
+    font-size: 1.25rem;
+    line-height: 0.8rem;
+    color: #555;
+    display: block;
+}
+
+@media only screen and (max-width: 948px) {
+    .dropdown-menu-nav .dropdown-perfil h3 {
+        display: none; /* Oculta em telas pequenas */
+    }
+}
+
+
+/* Estilizando o span do H3 (subtítulo do menu dropdown) */
+.dropdown-menu-nav .dropdown-perfil h3 span{
+    font-size: .75rem;
+    color: #777;
+}
+
+/* preparando o campo que receberá imagem */
+.dropdown-menu-nav .dropdown-perfil .imgCx{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; /* esconde tudo que está por fora do seu tamanho em caixa */
+    
+}
+
+/* posicionando a imagem no local onde ficará */
+.dropdown-menu-nav .dropdown-perfil .imgCx img{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Se a imagem não estiver cobrindo toda caixa, deixa a imagem proporcional */
+    
+}
+
+/* Posicionando o menu dropdown em si, a parte que expande e se esconde */
+.dropdown-div .dropdown-menu-nav .dropdown-menu{
+    display: flex;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 200px;
+    min-height: 100px;
+    background: #fff;
+    border: none;
+    box-shadow: 0 50px 50px rgba(0,0,0,.1);
+    user-select: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    
+}
+
+/* mostra o Menu (somente funciona por conta do JS) */
+.dropdown-menu-nav .dropdown-menu.ativo{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Detalhe do bico que aparece no menu dropdown em si, a parte que expande e se escondes */
+.dropdown-menu-nav .dropdown-menu::before{
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    z-index: -1;
+    transform: rotate(45deg)
+}
+
+
+/* Estilizando a lista do dropdown (UL) */
+.dropdown-menu-nav .dropdown-menu ul{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    list-style: none;
+        
+}
+
+/* Estilizando a lista do dropdown - espaçamento(LI) */
+.dropdown-menu-nav .dropdown-menu ul li{
+    padding: 15px 20px;
+    background: #fff;
+    transition: 0.2s;
+}
+
+/* Estilizando os links da lista do dropdown ao passar o mouse- (A) */
+.dropdown-menu-nav .dropdown-menu ul li:hover{
+    background: #F5F5F5;
+    transition: 0s;
+}
+
+
+/* Estilizando os links da lista do dropdown - (A) */
+.dropdown-menu-nav .dropdown-menu ul li a{
+    text-decoration: none;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+/* Estilizando os ícones da lista do dropdown - (ion-icon) */
+.dropdown-menu-nav .dropdown-menu ul li a ion-icon{
+    font-size: 1.25rem;
+    color:#999;
+}

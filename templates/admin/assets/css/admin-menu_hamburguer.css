@@ -10,6 +10,7 @@ main{
     flex-direction: column;
     justify-content:center;
     align-items: center;
+    font-family: 'Century Gothic', sans-serif;
 }
 
 /*Afastar o menu das bordas (fake icone))*/
@@ -76,9 +77,10 @@ main{
     width: 300px;
     height: calc(100vh - 40px);
     padding-top: 100px;
-    background-color: #EDEDED;
+    background-color: #fff;
     margin-left: -300px;
     transition: all ease .2s;
+    box-shadow: 0 50px 50px rgba(0,0,0,.1);
 }
 
 /*Zerando margin da ul*/
@@ -91,7 +93,7 @@ main{
     padding: 10px 30px;
 }
 
-/*estilando menu ao aparecer*/
+/*estilizando menu ao aparecer*/
 .menu ul li a{
     text-decoration: none;
     color: #000;
