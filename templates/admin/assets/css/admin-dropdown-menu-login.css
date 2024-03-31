@@ -7,6 +7,7 @@
 }*/
 
 /* Configurando todo corpo */
+
 .dropdown-div{
     margin: 0;
     padding: 0;
@@ -91,6 +92,7 @@
 
 @media only screen and (max-width: 948px) {
     .dropdown-menu-nav .dropdown-perfil h3 {
+        transition: 0.6s;
         display: none; /* Oculta em telas pequenas */
     }
 }
@@ -99,7 +101,7 @@
 /* Estilizando o span do H3 (subtítulo do menu dropdown) */
 .dropdown-menu-nav .dropdown-perfil h3 span{
     font-size: .75rem;
-    color: #777;
+    color: #777;   
 }
 
 /* preparando o campo que receberá imagem */

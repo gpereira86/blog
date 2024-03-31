@@ -29,13 +29,20 @@ class CategoriaModelo
 
         return $resultado;
     }
-    
-        public function posts(int $id): array
+
+    public function posts(int $id): array
     {
         $query = "SELECT * FROM posts WHERE categoria_id = {$id} AND status = 1 ORDER BY id desc";
         $stmt = Conexao::getInstancia()->query($query);
         $resultado = $stmt->fetchAll();
 
         return $resultado;
+    }
+
+    public function armazenar(array $dados): void
+    {
+        $query = "INSERT INTO categorias (titulo, texto, status) VALUES (?, ?, ?)";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados['titulo-form'], $dados['texto-form'], $dados['status-form']]);
     }
 }

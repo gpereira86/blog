@@ -45,7 +45,7 @@ main{
     width: 35px;
     height: 5px;
     margin-bottom: 10px;
-    background-color: #CDCDCD;
+    background-color: #bcbcbc;
     border-radius: 3px;
     transition: all ease .2s;
 }
@@ -90,18 +90,22 @@ main{
 
 /*Afastando menu entre si*/
 .menu ul li{
-    padding: 10px 30px;
+    padding: 0px 30px;
 }
 
 /*estilizando menu ao aparecer*/
 .menu ul li a{
     text-decoration: none;
     color: #000;
-    font-size: 22px;
+    font-size: 20px;
     transition: all ease .3s;
 }
 
 /*Cor do menua ao passar o mouse*/
 .menu ul li a:hover{
     color: #999;
+}
+
+.menu ul li a i{
+    padding: 18px;
 }

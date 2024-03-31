@@ -6,6 +6,9 @@
 
     <div class="card-header bg-white border-0">
         <h5 class="card-title">Categorias</h5>
+        
+        <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
+        
     </div>    
     
     <div class="card-body">
@@ -13,16 +16,16 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">TÍTULO</th>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">TÍTULO</th>
                         <th scope="col" class="text-center">STATUS</th>
-                        <th scope="col">AÇÃO</th>
+                        <th scope="col" class="text-center">AÇÃO</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for categoria in categorias %}
                     <tr>
-                        <th>{{categoria.id}}</th>
+                        <th class="text-center">{{categoria.id}}</th>
                         <td>{{categoria.titulo}}</td>
                         <td class="text-center">
                             {% if categoria.status == 1 %}
@@ -31,7 +34,9 @@
                                 <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
                             {% endif %}
                         </td>
-                        <td></td>
+                        <td class="text-center">
+                            <a class="btn btn-dark" href="{{url('admin/categorias/editar/'~categoria.id)}}">Editar</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

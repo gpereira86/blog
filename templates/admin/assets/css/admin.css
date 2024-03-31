@@ -6,20 +6,27 @@
     padding: 0;
     list-style:none;
     box-sizing: border-box;
+    
 }
 
 /*Cores e fontes do corpo todo*/
-body{
+body {
     display: flex;
     min-height: 100vh;
     font-family: 'Century Gothic', sans-serif;
+    position: relative; /* Adicionando posicionamento relativo para o body */
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra na parte inferior da faixa */
+    background-image: linear-gradient(to bottom, #fff 85px, rgba(245, 245, 245, 0.5) 85px, rgba(245, 245, 245, 0.5) 0%);
+    background-size: 100% auto; /* Cobrir 100% da largura, altura automática */
 }
+
 
 .main-content {
     flex: 1;  /* Ocupa o restante do espaço disponível */
     overflow-y: auto;  /*Adiciona barra de rolagem vertical se necessário */
     width: 100%;
     padding: 100px 100px;
+    
 }
 
 /* Estilo para o cabeçalho */
@@ -30,6 +37,7 @@ body{
     transform: translateX(-50%);
     font-size: 28px; /*Tamanho da fonte, ajuste conforme necessário*/
     font-weight: bold; /*Peso da fonte, ajuste conforme necessário*/
+    
 }
 
 
