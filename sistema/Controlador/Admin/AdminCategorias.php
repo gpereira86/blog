@@ -14,8 +14,16 @@ class AdminCategorias extends AdminControlador
 {
     public function listar(): void
     {
+        $categoria = new CategoriaModelo();
+        
         echo  $this->template->renderizar('categorias/listar.html', [
-            'categorias' => (new CategoriaModelo())->busca()
+            'categorias' => $categoria->busca(),
+            'total' =>[
+                'total' => $categoria->total(),
+                'ativos' =>  $categoria->total('status=1'),              
+                'inativos' =>  $categoria->total('status=0'),              
+            ]
+            
         ]);
     }
     public function cadastrar(): void
@@ -36,12 +44,19 @@ class AdminCategorias extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
             var_dump($dados);
-            
+            (new CategoriaModelo())->atualizar($dados, $id);
             Helpers::redirecionar('admin/categorias/listar');
         }
         
         echo $this->template->renderizar('categorias/formulario.html', [
             'categoria' => $categoria
         ]);
+    }
+    
+        public function deletar(int $id):void
+    {
+        var_dump($dados);
+            (new CategoriaModelo())->deletar($id);
+            Helpers::redirecionar('admin/categorias/listar');
     }
 }

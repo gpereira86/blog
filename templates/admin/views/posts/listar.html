@@ -2,11 +2,12 @@
 
 {% block conteudo %}
 
+<h5 class="card-title pb-3">Posts</h5>
+
 <div class="card border-0 shadow-sm">
 
-    <div class="card-header bg-white border-0">
-        <h5 class="card-title">Posts</h5>
-        
+    <div class="card-header bg-white border-0 d-flex justify-content-between align-itens-center">
+        Total de posts {{total.total}} - ativos {{total.ativos}} - inativos {{total.inativos}}
         <a href="{{url('admin/posts/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
     </div>
 
@@ -34,7 +35,8 @@
                             {% endif %}
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-dark" href="{{url('admin/posts/editar/'~post.id)}}">Editar</a>
+                            <a class="btn" href="{{url('admin/posts/editar/'~post.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a class="btn" href="{{url('admin/posts/deletar/'~post.id)}}"><i class="fa-regular fa-trash-can"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

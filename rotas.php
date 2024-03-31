@@ -32,11 +32,13 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
         $r->addRoute('GET', 'posts/listar', 'sistema\Controlador\Admin\AdminPosts@listar');
         $r->addRoute(['GET', 'POST'], 'posts/cadastrar', 'sistema\Controlador\Admin\AdminPosts@cadastrar');
         $r->addRoute(['GET', 'POST'], 'posts/editar/{id:\d+}', 'sistema\Controlador\Admin\AdminPosts@editar');
+        $r->addRoute(['GET', 'POST'], 'posts/deletar/{id:\d+}', 'sistema\Controlador\Admin\AdminPosts@deletar');
         
         //admin categorias
         $r->addRoute('GET', 'categorias/listar', 'sistema\Controlador\Admin\AdminCategorias@listar');
         $r->addRoute(['GET', 'POST'], 'categorias/cadastrar', 'sistema\Controlador\Admin\AdminCategorias@cadastrar');
         $r->addRoute(['GET', 'POST'], 'categorias/editar/{id:\d+}', 'sistema\Controlador\Admin\AdminCategorias@editar');
+        $r->addRoute(['GET', 'POST'], 'categorias/deletar/{id:\d+}', 'sistema\Controlador\Admin\AdminCategorias@deletar');
     });
     
 });

@@ -12,9 +12,11 @@ use sistema\Nucleo\Conexao;
 class CategoriaModelo
 {
 
-    public function busca(): array
+    public function busca(?string $termo = null): array
     {
-        $query = "SELECT * FROM categorias WHERE status = 1 ORDER BY titulo ASC";
+        $termo = ($termo ? "WHERE {$termo}" : '');
+        
+        $query = "SELECT * FROM categorias {$termo}";
         $stmt = Conexao::getInstancia()->query($query);
         $resultado = $stmt->fetchAll();
 
@@ -23,7 +25,7 @@ class CategoriaModelo
 
     public function buscaPorId(int $id): bool|object
     {
-        $query = "SELECT * FROM categorias WHERE id = {$id} ";
+        $query = "SELECT * FROM categorias WHERE id = {$id} ORDER BY id desc";
         $stmt = Conexao::getInstancia()->query($query);
         $resultado = $stmt->fetch();
 
@@ -44,5 +46,30 @@ class CategoriaModelo
         $query = "INSERT INTO categorias (titulo, texto, status) VALUES (?, ?, ?)";
         $stmt = Conexao::getInstancia()->prepare($query);
         $stmt->execute([$dados['titulo-form'], $dados['texto-form'], $dados['status-form']]);
+    }
+    
+    public function atualizar(array $dados, int $id): void
+    {
+        $query = "UPDATE categorias SET titulo = ?, texto = ?, status = ? WHERE id = ?";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados['titulo-form'], $dados['texto-form'], $dados['status-form'], $id]);
+    }
+    
+    public function deletar(int $id): void
+    {
+        $query = "DELETE FROM categorias WHERE id = ?";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$id]);
+    }
+    
+    public function total(?string $termo = null): int
+    {
+        $termo = ($termo ? "WHERE {$termo}" : '');
+        
+        $query = "SELECT * FROM categorias {$termo}";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->rowCount();
     }
 }

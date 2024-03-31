@@ -2,9 +2,11 @@
 
 {% block conteudo %}
 
+<h5 class="card-title">Posts</h5><br>
+
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <h5 class="card-title">Posts</h5><br>
+        
         
         <form action="{% if post.id %}{{url('admin/posts/editar/'~post.id)}}{% else %}{{url('admin/posts/cadastrar')}}{% endif %}" method="post">
         
@@ -19,7 +21,6 @@
 
             <div class="row">
                 <div class="col-md-6">
-                
                     <div class="mb-3">
                         <label for="texto-form" class="form-label">Categoria</label>
                         <select class="form-select" name="categoria-form" id="categoria-form">
@@ -28,22 +29,18 @@
                             {% endfor%}
                         </select>
                     </div>
-                    
                 </div>    
                 
                 <div class="col-md-6">
-                
                     <div class="mb-3">
                         <label for="texto-form" class="form-label">Status</label>
                         <select class="form-select" name="status-form" id="status-form">
-                            <option value="1" {% if categoria.status =='1'%} selected{% endif %}>Ativo</option>
+                            <option value="1" {% if post.status =='1'%} selected{% endif %}>Ativo</option>
                             <option value="0" {% if post.status =='0'%} selected{% endif %}>Inativo</option>
                         </select>
                     </div>
-                        
                 </div> 
             </div>
-            
             
             <input type="submit" class="btn btn-dark" value="{% if post.id %}Atualizar{% else %}Cadastrar{% endif %}">
             

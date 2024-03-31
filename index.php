@@ -5,23 +5,15 @@ require 'vendor/autoload.php';
 
 //require 'rotas.php';
 
+//$sessao = new sistema\Nucleo\Sessao();
 
-session_start();
+//$sessao->criar('nome', 'Glauco Pereira');
 
-echo session_id();
-
+//var_dump($sessao->carregar());
 echo '<hr>';
-
-$_SESSION['nome'] = 'Glauco Pereira';
-
-if (isset($_SESSION['visitas'])) {
-    $_SESSION['visitas'] += 1;
-} else {
-    $_SESSION['visitas'] = 1;
-}
-
-//unset($_SESSION['nome']);
-
-//session_destroy();
-
-echo "{$_SESSION['nome']} visitou {$_SESSION['visitas']}";
+//var_dump($sessao->checar('nome'));
+echo '<hr>';
+//$sessao->limpar('nome');
+//var_dump($sessao->checar('usuario'));
+echo '<hr>';
+$sessao->deletar();

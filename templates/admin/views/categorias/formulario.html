@@ -2,9 +2,11 @@
 
 {% block conteudo %}
 
+<h5 class="card-title">Categorias</h5><br>
+
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <h5 class="card-title">Categorias</h5><br>
+        
         <form action="{% if categoria.id %}{{url('admin/categorias/editar/'~categoria.id)}}{% else %}{{url('admin/categorias/cadastrar')}}{% endif %}" method="post">
 
             <div class="mb-3">
