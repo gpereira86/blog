@@ -3,24 +3,25 @@
 // Arquivo index responsável pela inicialização do sistema
 require 'vendor/autoload.php';
 
-require 'rotas.php';
+//require 'rotas.php';
 
-//$dados = filter_input_array(INPUT_GET, FILTER_DEFAULT);
-//if (isset($dados)){
-//    echo $dados['nome'].'<hr>' ;
-//    echo $dados['senha'];
-//} 
-//
-//echo '<hr>'
-//
-//
 
-//<!--<form action="" method="get">
-//    
-//    <input type="text" name="nome"><br><br>
-//    <input type="text" name="senha"><br><br>
-//    <input type="submit">
-//    
-//    
-//</form>-->
+session_start();
 
+echo session_id();
+
+echo '<hr>';
+
+$_SESSION['nome'] = 'Glauco Pereira';
+
+if (isset($_SESSION['visitas'])) {
+    $_SESSION['visitas'] += 1;
+} else {
+    $_SESSION['visitas'] = 1;
+}
+
+//unset($_SESSION['nome']);
+
+//session_destroy();
+
+echo "{$_SESSION['nome']} visitou {$_SESSION['visitas']}";
