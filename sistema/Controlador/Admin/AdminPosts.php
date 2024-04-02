@@ -19,11 +19,11 @@ class AdminPosts extends AdminControlador
         $post = new PostModelo();
         
         echo $this->template->renderizar('posts/listar.html', [
-            'posts' => $post->busca(),
+            'posts' => $post->busca()->ordem('status Asc, id DESC')->resultado(true),
             'total' =>[
                 'total' => $post->total(),
-                'ativos' =>  $post->total('status=1'),              
-                'inativos' =>  $post->total('status=0'),              
+                'ativos' =>  $post->total('status = 1'),              
+                'inativos' =>  $post->total('status = 0'),              
             ]
         ]);
     }
@@ -34,6 +34,7 @@ class AdminPosts extends AdminControlador
         if (isset($dados)) {
             //var_dump($dados);
             (new PostModelo())->armazenar($dados);
+            $this->mensagem->sucesso('Post Cadastrado com Sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar');
         }
         echo $this->template->renderizar('posts/formulario.html', [
@@ -48,6 +49,7 @@ class AdminPosts extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
             (new PostModelo())->atualizar($dados, $id);
+            $this->mensagem->sucesso('Post editado com Sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar');
         }
 

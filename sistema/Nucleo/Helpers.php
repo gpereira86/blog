@@ -1,12 +1,28 @@
 <?php
 
 namespace sistema\Nucleo;
+use sistema\Nucleo\Sessao;
 
 use Exception;
 
 class Helpers
 {
+    public static function flash(): ?string
+    {
+        $sessao = new Sessao();
+        
+        if($flash = $sessao->flash()){
+            echo $flash;
+        }
+        
+        return null;
+    }
  
+    /**
+     * Redireciona com url amigável
+     * @param string $url
+     * @return void
+     */
     public static function redirecionar(string $url = null): void
     {
         header('HTTP/1.1 302 found');

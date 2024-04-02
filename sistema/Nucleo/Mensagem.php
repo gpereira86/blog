@@ -56,4 +56,10 @@ class Mensagem
     {
         return filter_var($mensagem, FILTER_SANITIZE_SPECIAL_CHARS);
     }
+    
+    public function flash():void
+    {
+        (new Sessao())->criar('flash', $this);
+    }
+    
 }

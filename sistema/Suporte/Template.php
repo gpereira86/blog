@@ -38,12 +38,17 @@ class Template
                                         return Helpers::saudacao();
                                     })
                     ),
-                                            $this->twig->addFunction(
+                    $this->twig->addFunction(
                             new \Twig\TwigFunction('resumirTexto', function (string $texto, int $limite) {
                                         return Helpers::resumirTexto($texto, $limite);
                                     })
-                    )
+                    ),
                                             
+                    $this->twig->addFunction(
+                            new \Twig\TwigFunction('flash', function () {
+                                        return Helpers::flash();
+                                    })
+                    ),
             )
         );
     }

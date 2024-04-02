@@ -4,13 +4,20 @@
 
 <h5 class="card-title pb-3">Categorias</h5>
 
+{{flash()}}
+
 <div class="card border-0 shadow-sm">
 
     <div class="card-header bg-white border-0 d-flex justify-content-between align-itens-center">
         
-        Total de posts {{total.total}} - ativos {{total.ativos}} - inativos {{total.inativos}}
-        <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="height: 30px; margin-left: 50px;margin-top: 10px;">
+            <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.total}} posts</span>
+            <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.ativos}} ativos</span>
+            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.inativos}} inativos</span>
+        </div>
+
         
+        <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
     </div>    
     
     <div class="card-body">
