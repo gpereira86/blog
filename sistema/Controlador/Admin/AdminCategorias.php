@@ -30,9 +30,18 @@ class AdminCategorias extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            //var_dump($dados);
-            (new CategoriaModelo())->armazenar($dados);
-            Helpers::redirecionar('admin/categorias/listar');
+            
+            $categoria = new $CategoriaModelo();
+            $categoria->titulo = $dados['titulo-form'];
+            $categoria->texto = $dados['texto-form'];
+            $categoria->status = $dados['status-form'];
+            
+            
+            if ($categoria->salvar()) {
+                $this->mensagem->sucesso('Post Cadastrado com Sucesso')->flash();
+                Helpers::redirecionar('admin/categorias/listar');
+            }
+              
         }
         echo  $this->template->renderizar('categorias/formulario.html', []);
     }

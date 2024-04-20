@@ -25,7 +25,7 @@
                         <label for="texto-form" class="form-label">Categoria</label>
                         <select class="form-select" name="categoria-form" id="categoria-form">
                             {% for categoria in categorias %}
-                            <option value="{{categoria.id}}" {% if post.categoria_id == categoria.id %} selected{% endif %}>{{categoria.titulo}}</option>
+                            <option value="{{categoria.id}}" {% if post.categoria_id == categoria.id %} selected {% endif %}>{{categoria.titulo}}</option>
                             {% endfor%}
                         </select>
                     </div>
