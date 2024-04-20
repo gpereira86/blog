@@ -24,8 +24,13 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     // Define a rota para ERRO    
     $r->addRoute('GET', '/blog/404', 'sistema\Controlador\SiteControlador@erro404');
     
-    
+    // Rotas admin GRUPO
     $r->addGroup('/blog/admin/', function (FastRoute\ConfigureRoutes $r) {
+        
+        //admin login
+        $r->addRoute(['GET', 'POST'], 'login', 'sistema\Controlador\Admin\AdminLogin@login');
+        
+        // Dashboard
         $r->addRoute('GET', 'dashboard', 'sistema\Controlador\Admin\AdminDashboard@dashboard');
         
         //admin posts

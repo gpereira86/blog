@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+
+<main class="form-login w-100 m-auto" style="background: #F5F5F5;width: 100%;font-family: 'Century Gothic', sans-serif;">
+    <div class="position-absolute top-50 start-50 translate-middle shadow-sm p-3 mb-5 col-md-3" style="background: #fff;border-radius: 10px; ">
+
+        <div class="form">  
+            <h2 class="text-center">Painel Administrativo</h2>
+            <p class="text-center">Informe seu login e senha para entrar no sistema</p>
+            <span class="text-center">
+            {{ flash() }}
+            </span>
+            <form action="{{url('admin/login')}}" method="post">
+
+                <div class="form-group mb-3">
+                    <input type="email" name="email" id="email" class="form-control text-center" placeholder="E-mail">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="password" name="senha" id="senha" class="form-control text-center" placeholder="Senha">
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto mb-3">
+                    <button type="submit" class="btn btn-dark btn-block">Entrar</button>
+                </div>
+
+            </form>
+            <br>
+            <p class="text-center mb-0">
+                &copy; {{"now"|date("Y")}} - {{constant('SITE_NOME')}}
+            </p>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
