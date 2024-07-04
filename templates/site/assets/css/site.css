@@ -1,0 +1,14 @@
+.capaGrande{
+    width: 540px;
+    max-width: 540px;
+}
+
+.capaMedia{
+    width: 270px;
+    max-width: 270px;
+}
+
+.capaPequena{
+    min-width: 135px;
+    max-width: 135px;
+}

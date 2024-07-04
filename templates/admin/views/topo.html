@@ -3,10 +3,10 @@
     <div class="dropdown-menu-nav">
         <div class="dropdown-menuToggle"></div>
         <div class="dropdown-perfil">
-            <h3>Glauco Pereira<br><span>Backend</span></h3>
+            <h3>{{usuario().nome}}<br><span>{{usuario().email}}</span></h3>
 
             <div class="imgCx">
-                <img src="{{ url('templates/admin/assets/img/img.jpg') }}" alt=""/>
+                <img src="{{ url(usuario().link_img) }}" alt=""/>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ url('admin/sair') }}">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         Deslogar
                     </a>

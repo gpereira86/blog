@@ -9,9 +9,15 @@
 
 <ul>
     <li>
-        <a href="{{url('admin/dashboard')}}">
+        <a href="{{url('/')}}">
             <div>
                 <i class="fa-solid fa-house"></i>{{constant('SITE_NOME')}}
+            </div>
+            
+        </a>
+        <a href="{{url('admin/dashboard')}}">
+            <div>
+                <i class="fa-solid fa-chart-simple"></i>Dashboard
             </div>
             <hr>     
         </a>
@@ -27,7 +33,7 @@
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{url('admin/usuarios/listar')}}">
             <i class="fa-solid fa-users"></i>Usuários
         </a>
         <hr>

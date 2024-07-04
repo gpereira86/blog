@@ -16,22 +16,344 @@
 
 <!-- Topo -->
 {% include 'topo.html' %}
- 
+
 
 <!-- Conteúdo principal -->
 <div>          
 
     <main >
-        <div class="main-content">
+        <div class="main-content dashboardartg">
             {% block conteudo %}
-            <div class="card border-0 shadow-sm ">
-                <div class="card-header bg-white border-0">
-                    <h5 class="card-title">Dashboard</h5>
+            <div class="">
+                <div class="">
+                    <h5 class="card-title">Dashboard <small class="text-muted"> - {{ saudacao()~' '~usuario().nome }}. Seu último login foi em {{ dataBr(auditor.ultimo_login) }}</small></h5>
+
+                    {{flash()}}
+
                 </div>
-                <div class="card-body">
-                    Conteúdo em desenvolvimento
+            </div>  
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mt-3">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-secondary">Posts</h6>
+                                        </div>
+
+                                        <div class="col-auto text-secondary">
+                                            <a href="{{url('admin/posts/listar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-list-ul" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+                                            <a href="{{url('admin/posts/cadastrar')}}" class="text-decoration-none">
+                                                <i class="fa-regular fa-pen-to-square" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+                                        </div>
+
+                                        <h1>{{(posts.total|number_format)|replace({',': '.'})}}</h1>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="width: 90%;">
+                                            <span class="btn btn-outline-success pe-none text-center fw-bold">{{(posts.ativo|number_format)|replace({',': '.'})}} ativo(s)</span>
+                                            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{(posts.inativo|number_format)|replace({',': '.'})}} inativo(s)</span>
+                                        </div>                      
+                                    </div>
+
+                                </div>
+
+                            </div> 
+                        </div> 
+
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mt-3">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-secondary">Categorias</h6>
+                                        </div>
+
+                                        <div class="col-auto text-secondary">
+                                            <a href="{{url('admin/categorias/listar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-list-ul" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+
+                                            <a href="{{url('admin/categorias/cadastrar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-file" style="color: #555; padding-left: 5px;"></i>
+                                            </a>
+                                        </div>
+
+                                        <h1>{{categorias.total}}</h1>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="width: 230px;">
+                                            <span class="btn btn-outline-success pe-none text-center fw-bold">{{categorias.ativos}} ativo(s)</span>
+                                            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{categorias.inativos}} inativo(s)</span>
+                                        </div>                      
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mt-3">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-secondary">Usuários</h6>
+                                        </div>
+
+                                        <div class="col-auto text-secondary">
+                                            <a href="{{url('admin/usuarios/listar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-list-ul" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+
+                                            <a href="{{url('admin/usuarios/cadastrar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-users" style="color: #555; padding-left: 5px;"></i>
+                                            </a>
+                                        </div>
+
+                                        <h1>{{usuarios.total}}</h1>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="width: 230px;">
+                                            <span class="btn btn-outline-success pe-none text-center fw-bold">{{usuarios.ativo}} ativo(s)</span>
+                                            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{usuarios.inativo}} inativo(s)</span>
+                                        </div>                      
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mt-3">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-secondary">Admin</h6>
+                                        </div>
+
+                                        <div class="col-auto text-secondary">
+                                            <a href="{{url('admin/posts/listar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-list-ul" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+                                            <a href="{{url('admin/posts/cadastrar')}}" class="text-decoration-none">
+                                                <i class="fa-solid fa-user-pen" style="color: #555; padding-right: 5px;"></i>
+                                            </a>
+                                        </div>
+
+                                        <h1>{{usuariosadm.total}}</h1>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="width: 230px;">
+                                            <span class="btn btn-outline-success pe-none text-center fw-bold">{{usuariosadm.ativo}} ativo(s)</span>
+                                            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{usuariosadm.inativo}} inativo(s)</span>
+                                        </div>                      
+                                    </div>
+
+                                </div>
+
+                            </div> 
+                        </div> 
+
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm mt-3 px-4">
+
+                        <table class="table">
+                            <thead>
+                                <tr class="fs-5">
+                                    <th scope="col">Título</th>
+                                    <th class="text-center" scope="col">Views</th>
+                                    <th class="text-center" scope="col">Ação</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for post in posts.posts %}
+                                <tr>
+                                    <th>
+                                        {% if post.status == 1 %}
+                                        <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
+                                        {% else %}
+                                        <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
+                                        {% endif %}
+
+                                        <span class="ms-1">{{post.titulo}}</span> <br>
+                                        <small class="text-secondary fw-normal">Escrito por {{ post.usuario.nome }} {{ contarTempo(post.cadastrado_em) }} em {{ post.categoria.titulo }}</small>
+
+                                    </th>
+                                    <td class="text-center">{{post.visitas}}</td>
+                                    <td class="text-center">
+                                        <a class="btn" href="{{url('admin/posts/editar/'~post.id)}}" class="text-decoration-none"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn" href="{{url('admin/posts/deletar/'~post.id)}}" class="text-decoration-none"><i class="fa-regular fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
                 </div>
             </div>
+
+
+            <div class="row d-flex align-items-stretch">
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm mt-3">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h6 class="fw-bold text-secondary">Últimas Categorias</h6>
+                                </div>
+
+                                <div class="col-auto text-secondary">
+                                    <a href="{{url('admin/categorias/cadastrar')}}" class="text-decoration-none">
+                                        <i class="fa-solid fa-circle-plus" style="color: #555; padding-right: 5px;"></i>
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+                                    {% if categorias.categorias %}
+                                    <div class="table-responsive mx-4">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="text-center fs-6">Título</th>
+                                                    <th scope="col" class="text-center fs-6">Ação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for categoria in categorias.categorias %}
+                                                <tr>
+                                                    <td>
+                                                        {% if categoria.status == 1 %}
+                                                        <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
+                                                        {% else %}
+                                                        <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
+                                                        {% endif %}
+                                                        <spam class="ps-2">{{categoria.titulo}}</spam>
+                                                    </td>
+                                                   
+                                                    <td class="text-center">
+                                                        <a class="btn" href="{{url('admin/categorias/editar/'~categoria.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                        <a class="btn " href="{{url('admin/categorias/deletar/'~categoria.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% else %}
+                                    <div class="alert alert-warning" role="alert">
+                                        Nenhuma categoria cadastrada para exibir!
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm mt-3">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h6 class="fw-bold text-secondary">Últimos Logins:</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="mt-4">
+                                        {% for login in logins %}
+                                        {% if login.ultimo_login is empty %}
+
+                                        {% else %}
+                                        <p class="fs-6 mx-4">
+                                            <i class="fa-solid fa-user pe-2"></i><strong>{{login.nome }}</strong><br>
+
+                                            <small class="capitalize text-secondary mt-2">
+
+                                                {{ contarTempo(login.ultimo_login) }} em {{ dataBr(login.ultimo_login) }}
+
+                                            </small>
+                                        </p>
+                                        <hr>
+                                        {% endif %}
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm mt-3">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h6 class="fw-bold text-secondary">Em Desenvolvimento</h6>
+                                </div>
+
+                                <!--                                <div class="col-auto text-secondary">
+                                                                    <a href="#" class="text-decoration-none">
+                                                                        <i class="fa-solid fa-circle-plus" style="color: #555; padding-right: 5px;"></i>
+                                                                    </a>
+                                                                </div>-->
+
+                                <div class="text-center">
+                                    {% for loginAdm in loginsAdm %}
+
+                                    <p>{{ dataBr(loginAdm.ultimo_login) }}</p>
+
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+
+            </div>
+
             {% endblock %}
         </div>
     </main>

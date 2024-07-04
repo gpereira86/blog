@@ -105,7 +105,7 @@ abstract class Modelo
             }
 
             if ($todos) {
-                return $stmt->fetchAll();
+                return $stmt->fetchAll(\PDO::FETCH_CLASS, static::class);
             }
 
             return $stmt->fetchObject(static::class);
@@ -181,6 +181,12 @@ abstract class Modelo
         return $busca->resultado();
     }
 
+    public function buscaPorSlug(string $slug)
+    {
+        $busca = $this->busca("slug = :s", "s={$slug}");
+        return $busca->resultado();
+    }
+
     public function apagar(string $termos)
     {
         try {
@@ -196,26 +202,26 @@ abstract class Modelo
             return null;
         }
     }
-    
+
     public function deletar()
     {
-        if(empty($this->id)){
+        if (empty($this->id)) {
             return false;
         }
-        
+
         $deletar = $this->apagar("id = {$this->id}");
         return $deletar;
     }
 
     public function total(): int
-    {   
+    {
         $stmt = Conexao::getInstancia()->prepare($this->query);
-        $stmt->execute();
+        $stmt->execute($this->parametros);
 
         return $stmt->rowCount();
     }
 
-    public function salvar()
+    public function salvar(): bool
     {
         //CADASTRAR
         if (empty($this->id)) {
@@ -240,4 +246,26 @@ abstract class Modelo
         $this->dados = $this->buscaPorId($id)->dados();
         return true;
     }
+    
+    private function ultimoId():int
+    {
+        return Conexao::getInstancia()->query("SELECT MAX(id) as maximo FROM {$this->tabela}")->fetch()-> maximo +1;
+    }
+    
+    protected function slug()
+    {
+        $chegarSlug = $this->busca("slug = :s AND id != :id", "s={$this->slug}&id={$this->id}");
+        
+        if($chegarSlug->total()){
+            $this->slug = "{$this->slug}-{$this->ultimoId()}";
+        }
+    }
+    
+    public function salvarVisitas()
+    {
+        $this->visitas += 1;
+        $this->ultima_visita_em = date('Y-m-d H:i:s');
+        $this->salvar();
+    }
+    
 }

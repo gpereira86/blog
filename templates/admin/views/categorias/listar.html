@@ -2,6 +2,10 @@
 
 {% block conteudo %}
 
+<h5 class="card-title">
+    <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity = '0.5'" onmouseout="this.style.opacity = '1'">Home </a>
+</h5><br>
+
 <h5 class="card-title pb-3">Categorias</h5>
 
 {{flash()}}
@@ -9,20 +13,20 @@
 <div class="card border-0 shadow-sm">
 
     <div class="card-header bg-white border-0 d-flex justify-content-between align-itens-center">
-        
+
         <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="height: 30px; margin-left: 50px;margin-top: 10px;">
             <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.total}} posts</span>
             <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.ativos}} ativos</span>
             <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.inativos}} inativos</span>
         </div>
 
-        
+
         <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
     </div>    
-    
+
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped" id="CategoriaDtTable">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">ID</th>
@@ -38,24 +42,55 @@
                         <td>{{categoria.titulo}}</td>
                         <td class="text-center">
                             {% if categoria.status == 1 %}
-                                <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
+                            <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
                             {% else %}
-                                <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
+                            <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
                             {% endif %}
                         </td>
                         <td class="text-center">
+                            <a class="btn" data-bs-toggle="offcanvas" href="#info{{categoria.id}}" role="button" aria-controls="offcanvasExample">
+                                <i class="fa-regular fa-chart-bar"></i>
+                            </a>
                             <a class="btn" href="{{url('admin/categorias/editar/'~categoria.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
                             <a class="btn " href="{{url('admin/categorias/deletar/'~categoria.id)}}"><i class="fa-regular fa-trash-can"></i></a>
                         </td>
-                    </tr>
-                    {% endfor %}
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="info{{categoria.id}}" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"><strong>{{categoria.titulo}}</strong></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Cadastrado em: {{categoria.cadastrado_em|date("d/m/Y H:i:s")}}
+                                </li>
+                                <li class="list-group-item">
+                                    Atualizado em: 
+                                    {% if categoria.atualizado_em != null %}
+                                    {{post.atualizado_em|date("d/m/Y H:i:s")}}
+                                    {% else %}
+
+                                    {% endif %}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
 
-        
-        
-        
+
+
+
     </div>
 
 </div>

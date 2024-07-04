@@ -1,0 +1,71 @@
+{% extends 'dashboard.html' %}
+
+{% block conteudo %}
+
+<h5 class="card-title">
+    <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity = '0.5'" onmouseout="this.style.opacity = '1'">Home </a>
+    /
+    <a href="{{url('admin/usuarios/listar')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity = '0.5'" onmouseout="this.style.opacity = '1'"> Usuários</a>
+    <span>/ {% if usuario.id %}Atualizar{% else %}Cadastrar{% endif %}</span>
+</h5><br>
+
+{{flash()}}
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+
+
+        <form action="{% if usuario.id %}{{url('admin/usuarios/editar/'~usuario.id)}}{% else %}{{url('admin/usuarios/cadastrar')}}{% endif %}" method="post">
+
+            <div class="row">
+                <div class="mb-3 col-md-5">
+                    <label for="titulo-form" class="form-label">Nome</label>
+                    <input type="text" name="nome" id="nome" value="{{usuario.nome}}" class="form-control">
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="texto-form" class="form-label">E-mail</label>
+                    <input type="email" name="email" id="email" value ="{{usuario.email}}" class="form-control">
+                </div>
+
+                <div class="mb-3 col-md-3">
+                    <label for="titulo-form" class="form-label">Senha</label>
+                    <input type="password" name="senha" id="senha" value="{{usuario.senha}}" class="form-control">
+                </div>
+
+            </div>
+
+            <div class="row">
+                
+                <div class="mb-3 col-md-2">
+                    <label for="texto-form" class="form-label">Level</label>
+                    <select class="form-select text-center" name="level" id="level">
+                        <option value="1" {% if usuario.level =='1'%} selected{% endif %}>Usuário</option>
+                        <option value="2" {% if usuario.level =='2'%} selected{% endif %}>Junior</option>
+                        <option value="3" {% if usuario.level =='3'%} selected{% endif %}>Admin</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-md-2">
+                    <label for="texto-form" class="form-label">Status</label>
+                    <select class="form-select text-center" name="status" id="status">
+                        <option value="1" {% if usuario.status =='1'%} selected{% endif %}>Ativo</option>
+                        <option value="0" {% if usuario.status =='0'%} selected{% endif %}>Inativo</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="texto-form" class="form-label">Imagem de Perfil - Link</label>
+                    <input type="text" name="link_img" id="link_img" value ="{{usuario.link_img}}" class="form-control ">
+                </div>
+
+            </div>
+
+            <input type="submit" class="btn btn-dark" value="{% if usuario.id %}Atualizar{% else %}Cadastrar{% endif %}">
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

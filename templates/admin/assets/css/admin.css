@@ -40,6 +40,11 @@ body {
     
 }
 
+.dashboardartg{
+    margin-top: 90px;
+    padding-top: 5px;
+}
+
 
 footer {
   position: fixed;
@@ -56,3 +61,7 @@ footer {
 .espacar {
 margin-right: 15px;  /*Ajuste o valor conforme necessário para o espaçamento desejado*/
 }
+
+.capitalize::first-letter {
+        text-transform: uppercase;
+    }

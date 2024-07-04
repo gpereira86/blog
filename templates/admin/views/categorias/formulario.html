@@ -2,7 +2,14 @@
 
 {% block conteudo %}
 
-<h5 class="card-title">Categorias</h5><br>
+<h5 class="card-title">
+    <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'">Home </a>
+    /
+    <a href="{{url('admin/categorias/listar')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'"> Categorias</a>
+    <span>/ {% if categoria.id %}Atualizar{% else %}Cadastrar{% endif %}</span>
+</h5><br>
+
+{{flash()}}
 
 <div class="card border-0 shadow-sm">
     <div class="card-body">
@@ -15,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label for="texto-form" class="form-label">Texto</label>
-                <textarea name="texto-form" id="texto-form" class="form-control" rows="3">{{categoria.texto}}"</textarea>
+                <textarea name="texto-form" id="texto-form" class="form-control" rows="3">{{categoria.texto}}</textarea>
             </div>
             
             <div class="mb-3">
@@ -28,8 +35,10 @@
             
             <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{% else %}Cadastrar{% endif %}">
             
+            
+            
         </form>
-
+        
     </div>
 </div>
 

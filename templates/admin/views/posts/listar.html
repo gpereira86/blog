@@ -2,55 +2,44 @@
 
 {% block conteudo %}
 
-<h5 class="card-title pb-3">Posts</h5>
+<h5 class="card-title">
+    <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity = '0.5'" onmouseout="this.style.opacity = '1'">Home </a>
+    <span>/ Posts</span>
+</h5><br>
 
 {{flash()}}
 
 <div class="card border-0 shadow-sm">
 
     <div class="card-header bg-white border-0 d-flex justify-content-between align-itens-center">
-        
+
         <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="height: 30px; margin-left: 50px;margin-top: 10px;">
-            <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.total}} posts</span>
-            <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.ativos}} ativos</span>
-            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.inativos}} inativos</span>
+            <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.total|number_format(0, ',', '.')}} posts</span>
+            <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.ativos|number_format(0, ',', '.')}} ativos</span>
+            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.inativos|number_format(0, ',', '.')}} inativos</span>
         </div>
 
-        
+
         <a href="{{url('admin/posts/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table">
+
+            <table id="PostDtTable" url="{{url()}}" class="table table-striped " style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">ID</th>
-                        <th scope="col" class="text-center">TÍTULO</th>
-                        <th scope="col" class="text-center">STATUS</th>
-                        <th scope="col" class="text-center">AÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in posts %}
-                    <tr>
-                        <th class="text-center">{{post.id}}</th>
-                        <td>{{post.titulo}}</td>
-                        <td class="text-center">
-                            {% if post.status == 1 %}
-                                <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
-                            {% else %}
-                                <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
-                            {% endif %}
-                        </td>
-                        <td class="text-center">
-                            <a class="btn" href="{{url('admin/posts/editar/'~post.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a class="btn" href="{{url('admin/posts/deletar/'~post.id)}}"><i class="fa-regular fa-trash-can"></i></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+                        <th class="text-center">id</th>
+                        <th class="text-center">Capa</th>
+                        <th class="text-center">Título</th>
+                        <th class="text-center">Categoria</th>
+                        <th class="text-center">Visitas</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Ação</th>
+                    </tr>    
+                </thead>                
             </table>
+
         </div>
 
     </div>

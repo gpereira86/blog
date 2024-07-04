@@ -23,7 +23,10 @@
     "require": {
     "php": ">=8.0",
         "twig/twig": "^3.0",
-        "nikic/fast-route": "^2.0@dev"
+        "nikic/fast-route": "^2.0@dev",
+        "digitalnature/php-ref": "dev-master",
+        "verot/class.upload.php": "dev-master",
+        "phpmailer/phpmailer": "dev-master"
     }
     
     

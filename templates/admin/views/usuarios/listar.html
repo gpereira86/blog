@@ -1,0 +1,83 @@
+{% extends 'dashboard.html' %}
+
+{% block conteudo %}
+
+<h5 class="card-title">
+    <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark" style="opacity: 1;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'">Home </a>
+    <span>/ Usuários</span>
+</h5><br>
+
+{{flash()}}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white border-0 d-flex justify-content-between align-itens-center">
+        
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example" style="height: 30px; margin-left: 50px;margin-top: 10px;">
+            <label>Usuários &nbsp;</label> 
+            <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.usuarios}} posts</span>
+            <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.usuariosAtivo}} ativos</span>
+            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.usuariosInativo}} inativos</span>
+            <label> &nbsp;&nbsp;&nbsp;&nbsp; Admin &nbsp;</label> 
+            <span class="btn btn-outline-secondary pe-none text-center fw-bold">{{total.admin}} posts</span>
+            <span class="btn btn-outline-success pe-none text-center fw-bold">{{total.adminAtivo}} ativos</span>
+            <span class="btn btn-outline-danger pe-none text-center fw-bold">{{total.adminInativo}} inativos</span>
+        </div>
+
+        
+        <a href="{{url('admin/usuarios/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">NOME</th>
+                        <th scope="col" class="text-center">E-MAIL</th>
+                        <th scope="col" class="text-center">LEVEL</th>
+                        <th scope="col" class="text-center">STATUS</th>
+                        <th scope="col" class="text-center">LINK IMAGEM</th>
+                        <th scope="col" class="text-center">AÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td class="text-center">{{usuario.id}}</th>
+                        <td>{{usuario.nome}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td class="text-center">
+                            {% if usuario.level == 3 %}
+                                <span style="color: red;font-weight: bold;">Admin</span>
+                            {% elseif usuario.level == 2 %}
+                                <span style="color: purple;">Júnior</span>
+                            {% else %}    
+                                <span>Usuário</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if usuario.status == 1 %}
+                                <i class="fa-solid fa-circle" style="color: #63E6BE;"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle" style="color: #ff0000;"></i>
+                            {% endif %}
+                        </td>
+                        <td>{{usuario.link_img}}</td>
+                        
+                        <td class="text-center">
+                            <a class="btn" href="{{url('admin/usuarios/editar/'~usuario.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a class="btn" href="{{url('admin/usuarios/deletar/'~usuario.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

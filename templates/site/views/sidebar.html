@@ -1,15 +1,60 @@
-<h4 class="text-center fw-bold">
-    Categorias
-</h4>
+<div class="content">
+    <h4 class="text-center fw-bold">
+        Categorias
+    </h4>
 
 
-<ul class="list-group list-group-flush justify-content-end">
+    <ul class="list-group list-group-flush justify-content-end ">
 
-    {% for categoria in categorias %}
+        {% for categoria in categorias %}
 
-    <li class="list-group-item list-group-item-action"><a href="{{url('categoria/'~categoria.id)}}" class="text-decoration-none text-black">{{categoria.titulo}}</a></li>
+        <li class="list-group-item list-group-item-action">
+            <span class="row">
+                <span class="col text-start">
+                    <a href="{{url('categoria/'~categoria.slug)}}" class="text-decoration-none text-black">{{categoria.titulo}}</a>
+                </span>
+                {% if usuario().level == 3 %}
+                <span class="col text-end">
+                    <a class="btn" href="{{url('admin/categorias/editar/'~categoria.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a class="btn " href="{{url('admin/categorias/deletar/'~categoria.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                </span>
+                {% endif %}
 
-    {%endfor%}
+            </span>
+        </li>
 
-</ul>
+        {%endfor%}
 
+
+    </ul>
+</div>
+
+<br>
+<div class="content">
+    
+    <h4 class="text-center fw-bold">
+        Mais lidos
+    </h4>
+
+    <ul class="list-group list-group-flush justify-content-end ">
+
+        {% for maislido in maisLidos %}
+        <li class="list-group-item list-group-item-action">
+            <span class="row">
+                <span class="col text-start">
+                    <a href="{{url('categoria/'~maislido.slug)}}" class="text-decoration-none text-black"> {{loop.index~'. '~maislido.titulo}}</a>
+                </span>
+                {% if usuario().level == 3 %}
+                <span class="col text-end">
+                    <a class="btn" href="{{url('admin/categorias/editar/'~maislido.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a class="btn " href="{{url('admin/categorias/deletar/'~maislido.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                </span>
+                {% endif %}
+
+            </span>
+        </li>
+
+        {%endfor%}
+
+    </ul>
+</div>

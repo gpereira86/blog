@@ -1,23 +1,46 @@
 <?php
 
 namespace sistema\Nucleo;
-use sistema\Nucleo\Sessao;
 
+use sistema\Nucleo\Sessao;
 use Exception;
 
 class Helpers
 {
+
+    public static function validarSenha(string $senha): bool
+    {
+        if (mb_strlen($senha) >= 6 && mb_strlen($senha) <= 50) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function gerarSenha(string $senha): string
+    {
+        $options = [
+            'cost' => 10,
+        ];
+        return password_hash($senha, PASSWORD_DEFAULT, $options);
+    }
+
+    public static function verificarSenha(string $senha, string $hash): bool
+    {
+        return password_verify($senha, $hash);
+    }
+
     public static function flash(): ?string
     {
         $sessao = new Sessao();
-        
-        if($flash = $sessao->flash()){
+
+        if ($flash = $sessao->flash()) {
             echo $flash;
         }
-        
+
         return null;
     }
- 
+
     /**
      * Redireciona com url amigável
      * @param string $url
@@ -26,13 +49,12 @@ class Helpers
     public static function redirecionar(string $url = null): void
     {
         header('HTTP/1.1 302 found');
-        
+
         $local = ($url ? self::url($url) : self::url());
-        
+
         header("location: {$local}");
         exit();
     }
-        
 
     /**
      * Valida número de CPF
@@ -77,9 +99,8 @@ class Helpers
     public static function slug(string $string): string
     {
         $mapa['a'] = "ÁáãÃÉéÍíÓóÚúÀàÈèÌìÒòÙùÂâÊêÎîÔôÛûÄäËëÏïÖöÜüÇçÑñÝý!@#$%&!*_-+=:;,.?/|'~^°¨ªº´";
-
-        $mapa['b'] = 'AaaAEeIiOoUuAaEeIiOoUuAaEeIiOoUuAaEeIiOoUuAaEeIiOoUuAaEeIiOoUuCcNnYy';
-
+        $mapa['b'] = 'AaaAEeIiOoUuAaEeIiOoUuAaEeIiOoUuAaEeIiOoUuCcNnYy___________________________';
+        
         $slug = strtr(utf8_decode($string), utf8_decode($mapa['a']), $mapa['b']);
         $slug = strip_tags(trim($slug));
         $slug = str_replace(' ', '-', $slug);
@@ -126,7 +147,7 @@ class Helpers
      * @param string $url
      * @return string
      */
-    public static function url(string $url=null): string
+    public static function url(string $url = null): string
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
         $ambiente = ($servidor == 'localhost' ? URL_DESENVOLVIMENTO : URL_PRODUCAO);
@@ -298,5 +319,10 @@ class Helpers
         $resumirTexto = mb_substr($textoLimpo, 0, mb_strrpos(mb_substr($textoLimpo, 0, $limite), ''));
 
         return $resumirTexto . $continue;
+    }
+
+    public static function dataBr(string $data): string
+    {
+        return date('d/m/Y H:i:s', strtotime($data));
     }
 }

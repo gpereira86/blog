@@ -4,6 +4,7 @@ namespace sistema\Suporte;
 
 use Twig\Lexer;
 use sistema\Nucleo\Helpers;
+use sistema\Controlador\UsuarioControlador;
 
 class Template
 {
@@ -43,10 +44,31 @@ class Template
                                         return Helpers::resumirTexto($texto, $limite);
                                     })
                     ),
-                                            
                     $this->twig->addFunction(
                             new \Twig\TwigFunction('flash', function () {
                                         return Helpers::flash();
+                                    })
+                    ),
+                    $this->twig->addFunction(
+                            new \Twig\TwigFunction('usuario', function () {
+                                        return UsuarioControlador::usuario();
+                                    })
+                    ),
+                    $this->twig->addFunction(
+                            new \Twig\TwigFunction('dataBr', function (string $data) {
+                                        return Helpers::dataBr($data);
+                                    })
+                    ),
+                    $this->twig->addFunction(
+                            new \Twig\TwigFunction('contarTempo', function (string $data) {
+                                        return Helpers::contarTempo($data);
+                                    })
+                    ),
+                    $this->twig->addFunction(
+                            new \Twig\TwigFunction('tempoCarregamento', function () {
+                                        $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+                                        
+                                        return number_format($time, 4);
                                     })
                     ),
             )
