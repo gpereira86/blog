@@ -11,8 +11,8 @@ define('DB_USUARIO', 'root');
 define('DB_SENHA', '');
 
 //Informações do sistema
-define('SITE_NOME', 'UnSet');
-define('SITE_DESCRICAO', 'UnSet - Tecnologia em Suistemas');
+define('SITE_NOME', 'Projeto Blog');
+define('SITE_DESCRICAO', 'Blog - Um projeto acadêmico com toques pessoais');
 
 //Urls do sistema
 define('URL_PRODUCAO', 'http://unset.com.br');

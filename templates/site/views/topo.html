@@ -46,29 +46,29 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{url('admin/dashboard')}}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Perfil</a></li>
                         <li><a class="dropdown-item text-danger" href="{{ url('admin/sair') }}">Sair</a></li>
                     </ul>
-                    
+
                     {% else %}
 
                     <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{url('admin/login')}}" style="color: inherit;">Entrar</a></button>
-                    
+
                     {% endif %}
                 </div>
 
 
 
-<!--                {% if usuario().level == 3 %}
-                <a href="{{url('admin/dashboard')}}" class="text-decoration-none" style="color: inherit;">Admin {{usuario().nome}} Logado</a>
-                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{ url('admin/sair') }}" style="color: inherit;">Logout</a></button>
-                {% elseif usuario().level == 1 %}
-                Usuario {{usuario().nome}} Logado 
-                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{ url('admin/sair') }}" style="color: inherit;">Logout</a></button>
-                {% else %}
-                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{url('admin/login')}}" style="color: inherit;">Entrar</a></button>
-                <button type="button" class="btn btn-warning">Cadastre-se</button>
-                {% endif %}-->
+                <!--                {% if usuario().level == 3 %}
+                                <a href="{{url('admin/dashboard')}}" class="text-decoration-none" style="color: inherit;">Admin {{usuario().nome}} Logado</a>
+                                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{ url('admin/sair') }}" style="color: inherit;">Logout</a></button>
+                                {% elseif usuario().level == 1 %}
+                                Usuario {{usuario().nome}} Logado 
+                                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{ url('admin/sair') }}" style="color: inherit;">Logout</a></button>
+                                {% else %}
+                                <button type="button" class="btn btn-outline-light me-2"><a class="text-decoration-none" href="{{url('admin/login')}}" style="color: inherit;">Entrar</a></button>
+                                <button type="button" class="btn btn-warning">Cadastre-se</button>
+                                {% endif %}-->
 
             </div>
         </div>
@@ -76,4 +76,63 @@
         <div class="my-3" id="buscaResultado"></div>
 
     </div>
+
+    <div class="modal" id="myModal" style="color: #212121;">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">{{usuario().nome}}</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" >
+                    <div class="align-items-center text-center">
+                        <img class="align-items-center img-responsive " src="{{ url('templates/admin/assets/img/'~usuario().link_img) }}" alt="" style="border-radius: 50%; max-width: 350px;"/>
+                    </div>
+                    <div class="mt-5 mb-3 mx-3">
+                        <h5>E-mail:&nbsp <strong>{{usuario().email}}</strong></h5> 
+                        <h5>Level:&nbsp&nbsp 
+                            <strong>
+                                {% if usuario().level == 3 %}
+                                <span style="color: red;">Administrador</span>
+                                {% elseif usuario().level == 2 %}
+                                <span style="color: purple;">Júnior</span>
+                                {% else %}    
+                                <span>Usuário</span>
+                                {% endif %}
+                            </strong>
+                        </h5> 
+                        <h5>Status:&nbsp
+                            <strong>
+                                {% if usuario().status == 1 %}
+                                <span>Ativo</span>
+                                {% else %}    
+                                <span style="color: red;">Inativo</span>
+                                {% endif %}
+                            </strong>
+                        </h5> 
+                        <h5>Data de Inclusão: <strong style="margin-left: 1ch;">{{usuario().cadastrado_em|date("d/m/Y H:i")}}</strong></h5> 
+                        <h5>Atualizado em:  <strong style="margin-left: 2.8ch;">{{usuario().atualizado_em|date("d/m/Y H:i")}}</strong></h5> 
+                        <h5>Último Login: <strong style="margin-left: 4ch;">{{usuario().ultimo_login|date("d/m/Y H:i")}}</strong></h5> 
+
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    {% if usuario().level == 3 %}
+                    <a href="{{url('admin/usuarios/editar/'~usuario().id)}}"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" ><strong>Editar</strong></button></a>
+                    {% endif %}
+
+
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><strong>Fechar</strong></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </header>

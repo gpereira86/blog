@@ -12,13 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/blog/sistema/Controlador/Admin/AdminPosts.php</file>
-            <file>file:/C:/xampp/htdocs/blog/templates/admin/assets/js/admin.js</file>
+            <file>file:/C:/xampp/htdocs/blog/sistema/configuracao.php</file>
             <file>file:/C:/xampp/htdocs/blog/templates/site/views/index.html</file>
-            <file>file:/C:/xampp/htdocs/blog/templates/admin/views/base.html</file>
-            <file>file:/C:/xampp/htdocs/blog/templates/admin/views/posts/listar.html</file>
-            <file>file:/C:/xampp/htdocs/blog/rotas.php</file>
-            <file>file:/C:/xampp/htdocs/blog/templates/admin/views/categorias/listar.html</file>
+            <file>file:/C:/xampp/htdocs/blog/templates/site/views/sidebar.html</file>
+            <file>file:/C:/xampp/htdocs/blog/templates/admin/views/dashboard.html</file>
         </group>
     </open-files>
 </project-private>

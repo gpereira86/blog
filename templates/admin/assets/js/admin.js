@@ -11,27 +11,15 @@ $(document).ready(function () {
     $('#summernote').summernote();
 
     Fancybox.bind("[data-fancybox]", {
-        hideScrollbar: false,
+        hideScrollbar: false
     });
+
+    
+
 });
 
 
-//$(document).ready(function () {
-//    ClassicEditor
-//            .create(document.querySelector('#editor'))
-//            .catch(error => {
-//                console.error(error);
-//            });
-//});
 
-
-//$(document).ready(function () {
-//    document.addEventListener("DOMContentLoaded", function () {
-//        CKEDITOR.replace('editor1');
-//    });
-//});
-
-//let table = new DataTable('#TabelaDtTable');
 
 $(document).ready(function () {
     var url = $('table').attr('url');
@@ -43,16 +31,7 @@ $(document).ready(function () {
     });
 
     $('#CategoriaDtTable').DataTable({
-//        info: false,
-//        ordering: false,
-//        paging: false,
-//        searching: false
-//        columnDefs: [
-//            {
-//                targets: [3, 4],
-//                orderable: false
-//            }
-//        ],
+
         order: [[1, 'asc']],
         layout: {
             top2End: {

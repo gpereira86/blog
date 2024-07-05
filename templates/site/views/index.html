@@ -26,9 +26,11 @@
 
                     <div class="carousel-item {% if loop.index0 == 0 %}active{%endif%}">
                         <img src="{{url('uploads/imagens/'~slide.capa)}}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>{{slide.titulo}}</h5>
-                            <p>{{resumirTexto(slide.texto, 150)}}</p>
+                        <div class="carousel-caption d-none d-sm-block">
+                            <div style="background-color: rgba(0,0,0,0.5)">
+                                <h5>{{slide.titulo}}</h5>
+                                <p>{{resumirTexto(slide.texto, 150)}}</p>
+                            </div>
                         </div>
                     </div>
                     
