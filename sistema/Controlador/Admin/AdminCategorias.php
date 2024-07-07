@@ -6,13 +6,19 @@ use sistema\Modelo\CategoriaModelo;
 use sistema\Nucleo\Helpers;
 
 /**
- * Description of AdminCategorias
- *
- * @author glauc
+ * AdminCategorias define as funcionalidades de renderização possíveis em categorias dentro do painel administrativo
+ * 
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminCategorias extends AdminControlador
 {
-
+    
+    /**
+     * Renderizar itens para página de categorias do painel (solicita consulta ao BD)
+     * 
+     * @return void
+     */
     public function listar(): void
     {
         $categoria = new CategoriaModelo();
@@ -27,6 +33,11 @@ class AdminCategorias extends AdminControlador
         ]);
     }
 
+    /**
+     * Recebe os dados do Form de categorias e prepara para incluir novo registro no banco
+     * 
+     * @return void
+     */
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -62,6 +73,13 @@ class AdminCategorias extends AdminControlador
         ]);
     }
 
+    /**
+     * Recebe o id vindo como parâmetro da rota, depois recebe dados do Form editado
+     * de categorias e prepara para fazer Update no registro do banco
+     * 
+     * @param int $id
+     * @return void
+     */
     public function editar(int $id): void
     {
         $categoria = (new CategoriaModelo())->buscaPorId($id);
@@ -93,6 +111,12 @@ class AdminCategorias extends AdminControlador
         ]);
     }
 
+    /**
+     * Valida os dados do Form, não permite cadastro sem um título apenas
+     * 
+     * @param array $dados
+     * @return bool
+     */
     private function validarDados(array $dados): bool
     {
         if (empty($dados['titulo-form'])) {
@@ -102,6 +126,12 @@ class AdminCategorias extends AdminControlador
         return true;
     }
 
+    /**
+     * Recebe o id vindo como parâmetro da rota e deleta o registro correspondente no BD
+     * 
+     * @param int $id
+     * @return void
+     */
     public function deletar(int $id): void
     {
 
@@ -112,7 +142,7 @@ class AdminCategorias extends AdminControlador
                 $this->mensagem->alerta('A categoria que você está tentando deletar não existe!')->flash();
                 Helpers::redirecionar('admin/categorias/listar');
                 
-            } elseif ($categoria->posts($categoria-id)) {
+            } elseif ($categoria->posts($categoria->id)) {
                 $this->mensagem->alerta("A categoria {$categoria->titulo} tem posts cadastrados, dele ou altere os posts antes de deletar!")->flash();
                 Helpers::redirecionar('admin/categorias/listar');
                 

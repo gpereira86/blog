@@ -3,9 +3,10 @@
 namespace sistema\Biblioteca;
 
 /**
- * Description of Paginar
+ * Criia uma paginação de acordo com parâmetros de quantitativo por página 
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class Paginar
 {
@@ -18,6 +19,15 @@ class Paginar
     private int $arredor;
     private int $totalRegistros;
 
+    /**
+     * Contrutor: Cria os parâmetros da paginação
+     * 
+     * @param String $url
+     * @param int $pagina
+     * @param int $limite
+     * @param int $arredor
+     * @param int $total
+     */
     public function __construct(
             String $url,
             int $pagina = 1,
@@ -35,16 +45,31 @@ class Paginar
         $this->totalRegistros = $total;
     }
 
+    /**
+     * Limite: quantidade de Itens por página
+     * 
+     * @return int
+     */
     public function limite(): int
     {
         return $this->limite;
     }
-
+    
+    /**
+     * Offset: Define a partir de qual item a página atual iniciará
+     * 
+     * @return int
+     */
     public function offset(): int
     {
         return $this->offset;
     }
 
+    /**
+     * Renderiza a paginação para inclusão no HTML
+     * 
+     * @return String
+     */
     public function renderizar(): String
     {
         $paginacao = '<ul class="pagination">';
@@ -58,6 +83,11 @@ class Paginar
         return $paginacao;
     }
 
+    /**
+     * Criar lógica do item "anterior" para ser renderizado 
+     * 
+     * @return string|null
+     */
     private function anterior(): ?string
     {
         if ($this->pagina > 1) {
@@ -69,7 +99,12 @@ class Paginar
         return null;
         
     }
-
+    
+    /**
+     * Criar lógica do item "primeira" para ser renderizado
+     * 
+     * @return string|null
+     */
     private function primeira(): ?string
     {
         if ($this->pagina > 1) {
@@ -79,6 +114,11 @@ class Paginar
         return null;
     }
 
+    /**
+     * Criar lógica do item "barraPaginacao" para ser renderizado
+     *  
+     * @return string|null
+     */
     private function barraPaginacao(): ?string
     {
         $inicio = max(1, $this->pagina - $this->arredor);
@@ -98,6 +138,11 @@ class Paginar
         return $navegacao;
     }
 
+    /**
+     * Criar lógica do item "ultima" para ser renderizado
+     * 
+     * @return string|null
+     */
     private function ultima(): ?string
     {
         if ($this->pagina < $this->total) {
@@ -107,6 +152,11 @@ class Paginar
         return null;
     }
 
+    /**
+     * Criar lógica do item "proximo" para ser renderizado
+     * 
+     * @return string|null
+     */
     private function proximo(): ?string
     {
         if ($this->pagina < $this->total) {
@@ -116,6 +166,12 @@ class Paginar
         return null;
     }
     
+    /**
+     * Criia o texto a ser exibido juntamente com a paginação, nele constam 
+     * os valores exibidos e do total de registros daquela consulta
+     * 
+     * @return string
+     */
     public function info(): string
     {
         $totalInicial = $this->offset + 1;

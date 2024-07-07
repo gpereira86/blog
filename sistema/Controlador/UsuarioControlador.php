@@ -12,16 +12,26 @@ use sistema\Controlador\UsuarioControlador;
 /**
  * Controle Usuario
  * 
- * @author Glauco Pereira
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class UsuarioControlador extends Controlador
 {
-
+    
+    /**
+     * Construtor chama o contrutor do controlador (parente) passando um parâmetro 
+     * 
+     */
     public function __construct()
     {
         parent::__construct('templates/site/views');
     }
     
+    /**
+     * Cria sessão de usuário
+     * 
+     * @return UsuarioModelo|null
+     */
     public static function usuario(): ?UsuarioModelo
     {
         $sessao = new Sessao();

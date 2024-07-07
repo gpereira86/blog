@@ -1,60 +1,84 @@
 <div class="content">
-    <h4 class="text-center fw-bold">
-        Categorias
-    </h4>
+    <div class="card">
+        <div class="card-header text-bg-dark">
+            <h4 class="text-center fw-bold">
+                Categorias
+            </h4>
+        </div>
 
+        <ul class="list-group list-group-flush justify-content-end ">
 
-    <ul class="list-group list-group-flush justify-content-end ">
+            {% for categoria in categorias %}
 
-        {% for categoria in categorias %}
+            <li class="list-group-item list-group-item-action">
+                <span class="row">
+                    <span class="col text-start">
+                        <a href="{{url('categoria/'~categoria.slug)}}" class="text-decoration-none fs-5 fw-semibold text-secondary-emphasis">{{categoria.titulo}}</a>
+                    </span>
+                    {% if usuario().level == 3 %}
+                    <span class="col text-end">
+                        <a class="btn" href="{{url('admin/categorias/editar/'~categoria.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a class="btn " href="{{url('admin/categorias/deletar/'~categoria.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                    </span>
+                    {% endif %}
 
-        <li class="list-group-item list-group-item-action">
-            <span class="row">
-                <span class="col text-start">
-                    <a href="{{url('categoria/'~categoria.slug)}}" class="text-decoration-none text-black">{{categoria.titulo}}</a>
                 </span>
-                {% if usuario().level == 3 %}
-                <span class="col text-end">
-                    <a class="btn" href="{{url('admin/categorias/editar/'~categoria.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a class="btn " href="{{url('admin/categorias/deletar/'~categoria.id)}}"><i class="fa-regular fa-trash-can"></i></a>
-                </span>
-                {% endif %}
+            </li>
 
-            </span>
-        </li>
-
-        {%endfor%}
+            {%endfor%}
 
 
-    </ul>
+        </ul>
+    </div>
 </div>
 
 <br>
 <div class="content">
-    
-    <h4 class="text-center fw-bold">
-        Mais lidos
-    </h4>
 
-    <ul class="list-group list-group-flush justify-content-end ">
+    <div class="card">
+        <div class="card-header text-bg-dark">
 
-        {% for maislido in maisLidos %}
-        <li class="list-group-item list-group-item-action">
-            <span class="row">
-                <span class="col-7 text-start">
-                    <a href="{{url('post/'~maislido.slug)}}" class="text-decoration-none text-black"> {{loop.index~'. '~maislido.titulo}}</a>
-                </span>
-                {% if usuario().level == 3 %}
-                <span class="col-5 text-end">
-                    <a class="btn" href="{{url('admin/categorias/editar/'~maislido.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a class="btn " href="{{url('admin/categorias/deletar/'~maislido.id)}}"><i class="fa-regular fa-trash-can"></i></a>
-                </span>
-                {% endif %}
+            <h4 class="text-center fw-bold">
+                Mais lidos
+            </h4>
 
-            </span>
-        </li>
+        </div>
 
-        {%endfor%}
+        <div class="card">
+            <ul class="list-group list-group-flush justify-content-end ">
 
-    </ul>
+                {% for maislido in maisLidos %}
+                <li class="list-group-item list-group-item-action">
+                    <span class="row">
+
+                        {% if usuario().level == 3 %}
+                        <span class="col col-xl- text-start">
+                            <span>
+                                <a href="{{url('post/'~maislido.slug)}}" class="text-decoration-none text-black"> {{loop.index~'. '}}<span class="fs-5 fw-semibold text-secondary-emphasis">{{maislido.titulo}}</span></a>
+                                <!--                        </span>  
+                                                        
+                                                         <span class="col col-sm text-end">-->
+                            </span>
+                            <span class="row">
+                                <span class="col text-end">
+                                    <a class="btn" href="{{url('admin/categorias/editar/'~maislido.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a class="btn" href="{{url('admin/categorias/deletar/'~maislido.id)}}"><i class="fa-regular fa-trash-can"></i></a>
+                                </span>  
+                            </span>
+                        </span>
+
+                        {% else %}
+                        <span class="col col-xl text-start">
+                            <a href="{{url('post/'~maislido.slug)}}" class="text-decoration-none text-black"> {{loop.index~'. '}}<span class="fs-5 fw-semibold text-secondary-emphasis">{{maislido.titulo}}</span></a>
+                        </span>                        
+                        {% endif %}
+
+                    </span>
+                </li>
+
+                {%endfor%}
+
+            </ul>
+        </div>
+    </div>
 </div>

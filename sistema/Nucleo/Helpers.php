@@ -5,9 +5,21 @@ namespace sistema\Nucleo;
 use sistema\Nucleo\Sessao;
 use Exception;
 
+/**
+ * A classe de funções gerais de tratamento e preparação de dados
+ * 
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
+ */
 class Helpers
 {
 
+    /**
+     * Validação de senha com parâmetros de qauntidade
+     * 
+     * @param string $senha
+     * @return bool
+     */
     public static function validarSenha(string $senha): bool
     {
         if (mb_strlen($senha) >= 6 && mb_strlen($senha) <= 50) {
@@ -17,6 +29,12 @@ class Helpers
         return false;
     }
 
+    /**
+     * Gerar senha hash 
+     * 
+     * @param string $senha
+     * @return string
+     */
     public static function gerarSenha(string $senha): string
     {
         $options = [
@@ -25,11 +43,23 @@ class Helpers
         return password_hash($senha, PASSWORD_DEFAULT, $options);
     }
 
+    /**
+     * Comparar senha hash com senha digitada
+     * 
+     * @param string $senha
+     * @param string $hash
+     * @return bool
+     */
     public static function verificarSenha(string $senha, string $hash): bool
     {
         return password_verify($senha, $hash);
     }
 
+    /**
+     * construtor de mensagem flash
+     * 
+     * @return string|null
+     */
     public static function flash(): ?string
     {
         $sessao = new Sessao();
@@ -42,7 +72,8 @@ class Helpers
     }
 
     /**
-     * Redireciona com url amigável
+     * Redirecionamento com url amigável
+     * 
      * @param string $url
      * @return void
      */
@@ -58,6 +89,7 @@ class Helpers
 
     /**
      * Valida número de CPF
+     * 
      * @param string $cpf
      * @return bool
      */
@@ -86,6 +118,12 @@ class Helpers
         return true;
     }
 
+    /**
+     * Limpar string substituindo os números por nada
+     * 
+     * @param string $numero
+     * @return string
+     */
     public static function limparNumero(string $numero): string
     {
         return preg_replace('/[^0-9]/', '', $numero);
@@ -93,6 +131,7 @@ class Helpers
 
     /**
      * Gera URL amigável
+     * 
      * @param string $string
      * @return string
      */
@@ -111,6 +150,7 @@ class Helpers
 
     /**
      * Retorna a data no formato do windows
+     * 
      * @return string
      */
     public static function dataAtual(): string
@@ -143,7 +183,8 @@ class Helpers
     }
 
     /**
-     * Monta URL de acordo com Ambiente
+     * Monta URL de acordo com Ambiente desenvolvimento ou produção
+     * 
      * @param string $url
      * @return string
      */
@@ -160,7 +201,8 @@ class Helpers
     }
 
     /**
-     * Retorna Verdadeiro ou falso para ambiente local
+     * Retorna Verdadeiro ou falso para ambiente localhost
+     * 
      * @return bool
      */
     public static function localhost(): bool
@@ -175,6 +217,7 @@ class Helpers
 
     /**
      * Valida URL
+     * 
      * @param string $url
      * @return bool
      */
@@ -192,6 +235,12 @@ class Helpers
         return false;
     }
 
+    /**
+     * Validar url com Filtro
+     * 
+     * @param string $url
+     * @return bool
+     */
     public static function validarUrlComFiltro(string $url): bool
     {
         return filter_var($url, FILTER_VALIDATE_URL);
@@ -199,6 +248,7 @@ class Helpers
 
     /**
      * Valida endereço de e-mail
+     * 
      * @param string $email
      * @return bool
      */
@@ -209,6 +259,7 @@ class Helpers
 
     /**
      * Conta o tempo decorrido de uma data
+     * 
      * @param string $data
      * @return string
      */
@@ -245,6 +296,7 @@ class Helpers
 
     /**
      * Formata um valor com ponto e com virgula
+     * 
      * @param float $valor
      * @return string
      */
@@ -255,6 +307,7 @@ class Helpers
 
     /**
      * Formata o número com pontos
+     * 
      * @param string $numero
      * @return string
      */
@@ -263,6 +316,11 @@ class Helpers
         return number_format(($numero ? $numero : 0), 0, '.', '.');
     }
 
+    /**
+     * Gera saldação de acordo com a hora
+     * 
+     * @return string
+     */
     public static function saudacao(): string
     {
         $hora = date('H');
@@ -301,7 +359,7 @@ class Helpers
     }
 
     /**
-     * Resume um texto
+     * Resume um texto com limite definido em quantidade de caracteres
      * 
      * @param string $texto texto para resumir
      * @param int $limite quantidade de caracteres
@@ -321,6 +379,12 @@ class Helpers
         return $resumirTexto . $continue;
     }
 
+    /**
+     * Gera data em formato pt-br
+     * 
+     * @param string $data
+     * @return string
+     */
     public static function dataBr(string $data): string
     {
         return date('d/m/Y H:i:s', strtotime($data));

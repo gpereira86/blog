@@ -6,15 +6,21 @@ use PDO;
 use PDOException;
 
 /**
- * Description of Conexao
+ * Conexão com o Banco de Dados
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class Conexao
 {
 
     private static $instancia;
-
+    
+    /**
+     * Conexão PDO Banco MySql usando constantes de sistema do arquivo de configurações
+     * 
+     * @return PDO
+     */
     public static function getInstancia(): PDO
     {
         if (empty(self::$instancia)) {
@@ -35,11 +41,17 @@ class Conexao
         return self::$instancia;
     }
 
+    /**
+     * Contrutor (proteção)
+     */
     protected function __construct()
     {
         
     }
 
+    /**
+     * Clone (proteção)
+     */
     private function __clone(): void
     {
         

@@ -8,26 +8,37 @@ use sistema\Nucleo\Modelo;
 
 
 /**
- * Classe CategoriaModelo
+ * Classe CategoriaModelo: Define tabela do banco para categorias
  * 
- * @author Glauco Pereira
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class CategoriaModelo extends Modelo
 {
-//    const TABELA = 'categorias';
-    
+    /**
+     * Envia ao construtor (super classe) a tabela de consulta de banco para categorias
+     */
     public function __construct()
     {
         parent::__construct('categorias');
     }
     
+    /**
+     * Busca posts da caegoiria no BD
+     * 
+     * @param int $id
+     * @return array|null
+     */
     public function posts(int $id): ?array
     {
         $busca = (new PostModelo())->busca("categoria_id = {$id}");
         return $busca->resultado(true);
     }
     
-            
+// ----- ANTES DE CRIAR A SUPERCLASSE -----
+//
+//        const TABELA = 'categorias';
+//             
 //    public function busca(?string $termo = null): array
 //    {
 //        $termo = ($termo ? "WHERE {$termo}" : '');

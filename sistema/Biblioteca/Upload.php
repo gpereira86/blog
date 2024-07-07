@@ -3,9 +3,10 @@
 namespace sistema\Biblioteca;
 
 /**
- * Description of Upload
+ * Uploads de arquivos limitados a 3 MB e nas extensões: pdf, png, jpg, jpeg, docx
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class Upload
 {
@@ -18,16 +19,31 @@ class Upload
     private ?string $resultado = null;
     private ?string $erro = null;
 
+    /**
+     * Getter resultados
+     * 
+     * @return string|null
+     */
     public function getResultado(): ?string
     {
         return $this->resultado;
     }
-
+    
+    /**
+     * Getter erros
+     * 
+     * @return string|null
+     */
     public function getErro(): ?string
     {
         return $this->erro;
     }
-
+    
+    /**
+     * Construtor chamador da função permite escolher uma pasta para salvar (cria essa pasta dentro da raiz do projeto)
+     * 
+     * @param string $diretorio
+     */        
     public function __construct(string $diretorio = null)
     {
         $this->diretorio = $diretorio ?? 'uploads';
@@ -37,6 +53,15 @@ class Upload
         }
     }
 
+    /**
+     * Função de arquivo: Valida extensão e tamanho, depois cria os parâmetros personalizáveis 
+     * (nome, subdiretório e tamanho) chamando suas respectivas funçÕes
+     * 
+     * @param array $arquivo
+     * @param string $nome
+     * @param string $subDiretorio
+     * @param int $tamanho
+     */
     public function arquivo(array $arquivo, string $nome = null, string $subDiretorio = null, int $tamanho = null)
     {
         $this->arquivo = $arquivo;
@@ -58,7 +83,7 @@ class Upload
 
         $tiposValidos = [
             'application/pdf',
-            'text/plain',
+            //'text/plain',
             'image/png',
             'image/jpeg',
             'image/x-citrix-jpeg',
@@ -79,7 +104,12 @@ class Upload
             $this->moverArquivo();
         }
     }
-
+    
+    /**
+     * Cria o subdiretório quando informado na função arquivo, do contrário salva no diretório criado no construtor
+     * 
+     * @return void
+     */
     private function criarSubDiretorio(): void
     {
         if (!file_exists($this->diretorio . DIRECTORY_SEPARATOR . $this->subDiretorio) && !is_dir($this->diretorio . DIRECTORY_SEPARATOR . $this->subDiretorio)) {
@@ -87,6 +117,12 @@ class Upload
         }
     }
 
+    /**
+     * Verifica se já existe um arquivo com mesmo nome no diretório especificado na função arquivo,
+     * existindo ele gera um nome úniico para o arquiivo e o renomeia
+     * 
+     * @return void
+     */
     private function renomearArquivo(): void
     {
         $arquivo = $this->nome . strrchr($this->arquivo['name'], '.');
@@ -97,7 +133,12 @@ class Upload
         }
         $this->nome = $arquivo;
     }
-
+    
+    /**
+     * Salva o arquivo no diretório e com nome definidos na função arquivo
+     * 
+     * @return void
+     */
     private function moverArquivo(): void
     {
         if (move_uploaded_file($this->arquivo['tmp_name'], $this->diretorio . DIRECTORY_SEPARATOR . $this->subDiretorio . DIRECTORY_SEPARATOR . $this->nome)) {

@@ -83,8 +83,8 @@ $(document).ready(function () {
                 render: function (data, type, row) {
                     var html = '';
 
-                    html += '<a class="btn" href="' + url + '/editar/' + row[0] + '"><i class="fa-regular fa-pen-to-square"></i></a> ';
-                    html += '<a class="btn" href="' + url + '/deletar/' + row[0] + '"><i class="fa-regular fa-trash-can"></i></a> ';
+                    html += '<a class="btn" href="' + url + 'admin/posts/editar/' + row[0] + '"><i class="fa-regular fa-pen-to-square"></i></a> ';
+                    html += '<a class="btn" href="' + url + 'admin/posts/deletar/' + row[0] + '"><i class="fa-regular fa-trash-can"></i></a> ';
 
                     return html;
                 }

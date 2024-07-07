@@ -8,18 +8,28 @@ use sistema\Modelo\UsuarioModelo;
 use sistema\Controlador\UsuarioControlador;
 
 /**
- * Description of AdminLogin
+ * AdminLogin define as funcionalidades de renderização possíveis na tela de login
  *
- * @author Glauco Pereira
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminLogin extends Controlador
 {
-
+    
+    /**
+     * Construtor chama o contrutor do controlador (parente) passando um parâmetro 
+     * 
+     */
     public function __construct()
     {
         parent::__construct('templates/admin/views');
     }
 
+    /**
+     * Renderizar itens para o login | Checa se o usuário (solicita consulta ao BD)
+     * 
+     * @return void
+     */
     public function login(): void
     {
         

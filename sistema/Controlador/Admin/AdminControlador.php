@@ -8,9 +8,10 @@ use sistema\Controlador\UsuarioControlador;
 use sistema\Nucleo\Sessao;
 
 /**
- * Description of AdminControlador
+ * Concede o acesso ao painel administrativo apenas para usuários logados
  *
- * @author Glauco Pereira
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminControlador extends Controlador
 {

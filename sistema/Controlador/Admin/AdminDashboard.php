@@ -10,13 +10,19 @@ use sistema\Modelo\CategoriaModelo;
 use sistema\Modelo\AuditorUserModelo; 
 
 /**
- * Description of AdminDashboard
- *
- * @author glauc
+ * AdminDashboard define as funcionalidades de renderização possíveis no dashboard do painel administrativo
+ * 
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminDashboard extends AdminControlador
 {
 
+    /**
+     * Renderizar itens para o dashboard do painel (solicita consulta ao BD)
+     * 
+     * @return void
+     */
     public function dashboard(): void
     {
         $posts = new PostModelo();
@@ -55,6 +61,11 @@ class AdminDashboard extends AdminControlador
         ]);
     }
 
+    /**
+     * Fecha sessão e Renderiza página após sair
+     * 
+     * @return void
+     */
     public function sair(): void
     {
         $sessao = new Sessao();

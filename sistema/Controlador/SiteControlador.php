@@ -9,20 +9,26 @@ use sistema\Modelo\CategoriaModelo;
 use sistema\Biblioteca\Paginar;
 
 /**
- * Controle Geral
+ * Controle Geral: Renderizações de HTML
  * 
- * @author Glauco Pereira
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class SiteControlador extends Controlador
 {
 
+    /**
+     * Construtor chama o contrutor do controlador (parente) passando um parâmetro 
+     * 
+     */
     public function __construct()
     {
         parent::__construct('templates/site/views');
     }
 
     /**
-     * 'POST'
+     * Renderizar itens para página index (solicita consulta ao BD) 
+     * 
      * @return void
      */
     public function index(): void
@@ -38,7 +44,8 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * 'buscar'
+     * Consulta de BD para pesquisa no campo do header
+     * 
      * @return void
      */
     public function buscar(): void
@@ -56,7 +63,8 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * View Post
+     * Renderizar itens para página post (solicita consulta ao BD por slug) 
+     * 
      * @param string $slug
      * @return void
      */
@@ -77,7 +85,8 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * Categorias
+     * Consulta de BD para filtro por categoria
+     * 
      * @return void
      */
     public function categorias()
@@ -86,7 +95,8 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * View categoria
+     * Renderizar itens para página categorias (solicita consulta ao BD por slug) 
+     * 
      * @return void
      */
     public function categoria(string $slug, int $pagina = null): void
@@ -114,7 +124,7 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * View Sobre
+     * Renderizar itens para página sobre (solicita consulta ao BD por slug) 
      * @return void
      */
     public function sobre(): void
@@ -126,7 +136,7 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * View Erro404
+     * Renderizar página de Erro 404
      * @return void
      */
     public function erro404(): void

@@ -3,7 +3,7 @@
         'name' => 'ceounset/cursophp8',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '3f1f2e800eb31a17a69bec1d622ef77e5d6688e6',
+        'reference' => 'fd3b9661eb29bb4dbd576decd3a5c0a9f7f14a9a',
         'type' => 'proect',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ceounset/cursophp8' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '3f1f2e800eb31a17a69bec1d622ef77e5d6688e6',
+            'reference' => 'fd3b9661eb29bb4dbd576decd3a5c0a9f7f14a9a',
             'type' => 'proect',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -28,6 +28,15 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
+            'dev_requirement' => false,
+        ),
+        'graham-campbell/result-type' => array(
+            'pretty_version' => '1.1.x-dev',
+            'version' => '1.1.9999999.9999999-dev',
+            'reference' => 'fbd48bce38f73f8a4ec8583362e732e4095e5862',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../graham-campbell/result-type',
+            'aliases' => array(),
             'dev_requirement' => false,
         ),
         'nikic/fast-route' => array(
@@ -49,6 +58,17 @@
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(
                 0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'phpoption/phpoption' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '416ca2ac2a84555b785a98002d613fe13d1d1c2f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoption/phpoption',
+            'aliases' => array(
+                0 => '1.9.x-dev',
             ),
             'dev_requirement' => false,
         ),
@@ -118,6 +138,17 @@
             'install_path' => __DIR__ . '/../verot/class.upload.php',
             'aliases' => array(
                 0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'vlucas/phpdotenv' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '334f4952967f3ee6cdb2004e05e0bd01b525d56b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../vlucas/phpdotenv',
+            'aliases' => array(
+                0 => '5.6.x-dev',
             ),
             'dev_requirement' => false,
         ),

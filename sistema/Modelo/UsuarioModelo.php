@@ -7,24 +7,41 @@ use sistema\Nucleo\Sessao;
 use sistema\Nucleo\Helpers;
 
 /**
- * Description of UsuarioModelo
+ * Classe UsuarioModelo: Define tabela no BD para usuarios | Checagens de login
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class UsuarioModelo extends Modelo
 {
-
+    
+    /**
+     * Envia ao construtor (super classe) a tabela de consulta de banco para usuarios
+     */
     public function __construct()
     {
         parent::__construct('usuarios');
     }
 
+    /**
+     * Consulta usuário por e-mail no BD
+     * 
+     * @param string $email
+     * @return UsuarioModelo|null
+     */
     public function buscaPorEmail(string $email): ?UsuarioModelo
     {
         $busca = $this->busca("email = :e", "e={$email}");
         return $busca->resultado();
     }
 
+    /**
+     * Checagens de login
+     * 
+     * @param array $dados
+     * @param int $level
+     * @return bool
+     */
     public function login(array $dados, int $level = 1)
     {
         $usuario = (new UsuarioModelo())->buscaPorEmail($dados['email']);
@@ -58,6 +75,11 @@ class UsuarioModelo extends Modelo
         return true;
     }
 
+    /**
+     * Checagem de e-mail e cadastro de usuário
+     * 
+     * @return bool
+     */
     public function salvar(): bool
     {
         if ($this->busca("email = :e AND id != :id", "e={$this->email}&id={$this->id}")->resultado()) {

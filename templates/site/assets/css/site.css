@@ -12,3 +12,26 @@
     min-width: 135px;
     max-width: 135px;
 }
+
+.custom-carousel-container {
+    height: 400px; /* altura fixa para o contêiner do carrossel */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.custom-carousel-img {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    object-fit: contain;
+}
+
+.custom-footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}

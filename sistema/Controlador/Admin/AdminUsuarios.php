@@ -6,15 +6,17 @@ use sistema\Modelo\UsuarioModelo;
 use sistema\Nucleo\Helpers;
 
 /**
- * Description of AdminPosts
+ * AdminUsuarios define as funcionalidades de renderização possíveis em usuários dentro do painel administrativo
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminUsuarios extends AdminControlador
 {
 
     /**
-     * Listar usuários
+     *  Renderizar itens para página de usuarios do painel (soliciita consulta ao BD)
+     * 
      * @return void
      */
     public function listar(): void
@@ -34,6 +36,11 @@ class AdminUsuarios extends AdminControlador
         ]);
     }
 
+    /**
+     * Recebe os dados do Form de usuários e prepara para incluir novo registro no banco
+     * 
+     * @return void
+     */
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -70,7 +77,9 @@ class AdminUsuarios extends AdminControlador
     }
 
     /**
-     * Edita os dados do Usuário por ID
+     * Recebe o id vindo como parâmetro da rota, depois recebe dados do Form editado
+     * de usuários e prepara para fazer Update no registro do banco
+     * 
      * @param int $id
      * @return void
      */
@@ -109,7 +118,8 @@ class AdminUsuarios extends AdminControlador
     }
 
     /**
-     * Deletar um usuário por ID
+     * Recebe o id vindo como parâmetro da rota e deleta o registro correspondente no BD
+     * 
      * @param int $id
      * @return void
      */
@@ -137,7 +147,8 @@ class AdminUsuarios extends AdminControlador
 
     
     /**
-     * Checa os dados do formulário
+     * Valida os dados do Form
+     * 
      * @param array $dados
      * @return bool
      */

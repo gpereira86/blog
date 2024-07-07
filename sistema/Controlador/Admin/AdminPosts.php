@@ -8,15 +8,21 @@ use sistema\Nucleo\Helpers;
 use sistema\Biblioteca\Upload;
 
 /**
- * Description of AdminPosts
+ * AdminPosts define as funcionalidades de renderização possíveis em posts dentro do painel administrativo
  *
- * @author glauc
+ * @author Glauco Pereira <eu@glaucopereira.com>
+ * @copyright Copyright (c) 2024, Glauco Pereira
  */
 class AdminPosts extends AdminControlador
 {
 
     private ?string $capa;
 
+    /**
+     * API solicita registros em método POST ao BD dos posts | prepara para Datatable
+     * 
+     * @return void
+     */
     public function datatable(): void
     {
 
@@ -74,6 +80,11 @@ class AdminPosts extends AdminControlador
         echo json_encode($retorno);
     }
 
+    /**
+     * Renderizar itens para página de posts do painel (soliciita consulta ao BD)
+     * 
+     * @return void
+     */
     public function listar(): void
     {
         $post = (new PostModelo());
@@ -87,6 +98,12 @@ class AdminPosts extends AdminControlador
         ]);
     }
 
+    /**
+     * Recebe os dados do Form de post e prepara para incluir novo registro no banco
+
+     * 
+     * @return void
+     */
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -119,6 +136,13 @@ class AdminPosts extends AdminControlador
         ]);
     }
 
+    /**
+     * Recebe o id vindo como parâmetro da rota, depois recebe dados do Form editado
+     * de posts e prepara para fazer Update no registro do banco
+     * 
+     * @param int $id
+     * @return void
+     */
     public function editar(int $id): void
     {
         $post = (new PostModelo())->buscaPorId($id);
@@ -170,6 +194,7 @@ class AdminPosts extends AdminControlador
 
     /**
      * Checa os dados do formulário
+     * 
      * @param array $dados
      * @return bool
      */
@@ -208,6 +233,12 @@ class AdminPosts extends AdminControlador
         return true;
     }
 
+    /**
+     * Recebe o id vindo como parâmetro da rota e deleta o registro correspondente no BD
+     * 
+     * @param int $id
+     * @return void
+     */
     public function deletar(int $id): void
     {
 //        $id = filter_var($id, FILTER_VALIDATE_INT);

@@ -1,13 +1,14 @@
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 border-top text-bg-dark">
-    <p class="col-md-4 mb-0 text-body-secondary-wite ps-4">&copy; 2024-{{ "now"|date("Y") }} {{ constant('SITE_NOME') }}</p>
+<footer class="custom-footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 border-top text-bg-dark fixed-bottom">
+    <p class="col-md mb-0 text-body-secondary-wite ps-4">&copy; 2024-{{ "now"|date("Y") }} {{ constant('SITE_NOME') }}</p>
     
-    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <a href="/" class="col-md d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
     </a>
     
-    <ul class="nav col-md-4 justify-content-end text-body-secondary-wite">
-        <li class="nav-item pe-5">Levou {{tempoCarregamento()}} para carregar</li>
-        <li class="nav-item"><a href="{{ url()}}" class="pe-4 text-decoration-none" style="color: inherit;"> Home</a></li>
-        <li class="nav-item"><a href="{{ url('sobre-nos') }}" class="pe-4 text-decoration-none" style="color: inherit;">Sobre Nós</a></li>
+    <ul class="nav col-md justify-content-end text-end text-body-secondary-wite">
+        <li class="nav-item">(Levou {{tempoCarregamento()}} segundo(s) para carregar)</li>
+        <li class="nav-item"><a href="{{ url()}}" class="px-2 text-decoration-none" style="color: inherit;"> Home</a></li>
+        <li class="nav-item"> | </li>
+        <li class="nav-item"><a href="{{ url('sobre-nos') }}" class="px-2 text-decoration-none" style="color: inherit;">Sobre Nós</a></li>
     </ul>
 </footer>
