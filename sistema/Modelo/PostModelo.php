@@ -52,10 +52,10 @@ class PostModelo extends Modelo
      * 
      * @return UsuarioModelo|null
      */
-    public function salvar():bool
+    public function salvar(?string $acao = null):bool
     {
         $this->slug();
-        return parent::salvar();
+        return parent::salvar($acao);
     }
     
 }

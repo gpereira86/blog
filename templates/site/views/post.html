@@ -1,8 +1,8 @@
 {% extends 'base.html'%}
 
-{% block conteúde %} 
+{% block conteudo %} 
 
-<div class="container my-5">
+<div class="container my-4 mb-5 pb-4 col">
 
     <div class="row">
 
@@ -17,8 +17,8 @@
                 <img class="capaMedia" src="{{url('uploads/imagens/'~post.capa)}}" alt="{{post.titulo}}" title="{{post.titulo}}"/>
             </a>
 
+            <p class="pt-3">{{post.texto | raw}}</p>
             
-            <p>{{post.texto | raw}}</p>
         </div>
 
         <div class="col-lg-3 mb-4">

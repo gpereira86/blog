@@ -139,7 +139,7 @@ class Helpers
     {
         $mapa['a'] = "ÁáãÃÉéÍíÓóÚúÀàÈèÌìÒòÙùÂâÊêÎîÔôÛûÄäËëÏïÖöÜüÇçÑñÝý!@#$%&!*_-+=:;,.?/|'~^°¨ªº´";
         $mapa['b'] = 'AaaAEeIiOoUuAaEeIiOoUuAaEeIiOoUuAaEeIiOoUuCcNnYy___________________________';
-        
+
         $slug = strtr(utf8_decode($string), utf8_decode($mapa['a']), $mapa['b']);
         $slug = strip_tags(trim($slug));
         $slug = str_replace(' ', '-', $slug);
@@ -389,4 +389,59 @@ class Helpers
     {
         return date('d/m/Y H:i:s', strtotime($data));
     }
+
+    public static function validarAcao(string $acao): bool
+    {
+        $sessao = new Sessao();
+
+        // Verifica se o limite de ações foi atingido para a ação específica
+        if ($sessao->limiteAcoesAtingido($acao)) {
+            return false;
+        } else {
+            // Incrementa o contador de ações para a ação específica
+            $sessao->incrementarAcao($acao);
+                        
+            return true;
+        }
+    }
+    
+    /**
+     * Obtém o contador de ações executadas por sessão.
+     * 
+     * Chamada:  contadorAcao($acao, $tipo)
+     * 
+     * Tipos:   'num' = retorna um inteiro com o contador da ação
+     *          'msg' = retorna uma string com a mensagem de limite atingido ou quantas foram realizadas e quantas são permitidas
+     * 
+     * @param string $acao
+     * @param string $tipo
+     * @return int|string
+     */
+    public static function contadorAcao(string $acao, string $tipo='num'):int|string
+    {
+        $acao = $acao;
+        $sessao = new Sessao();
+        $contador = $sessao->obterContadorAcao($acao);
+        $qtdPermitida = QTDE_PERMITIDA;
+     
+        if($tipo == 'num'){
+            return $contador;
+        }elseif($tipo == 'msg'){
+            return $mensagem =($contador >= $qtdPermitida) ? 'Limite de '.$qtdPermitida.' inclusão/edição/exclusão atingido' : $contador . 'ª Inclusão/edição/exclusão dos(as) '.$qtdPermitida.' permitidos(as).';
+        }else{
+            return 'Erro interno: TIPO "INVÁLIDO", informe ao administrador do sistema.';
+        }
+        
+    }
+    
+    public static function decrementarAcao(string $acao):int
+    {
+        $acao = $acao;
+        $sessao = new Sessao();
+        
+        $sessao->decrementarAcao($acao);
+        
+        return $sessao->obterContadorAcao($acao);
+    }
+    
 }

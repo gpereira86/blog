@@ -6,8 +6,13 @@
             <h3>{{usuario().nome}}<br><span>{{usuario().email}}</span></h3>
 
             <div class="imgCx">
-                <img src="{{ url('templates/admin/assets/img/'~usuario().link_img) }}" alt=""/>
+                {% if usuario().link_img is not null %}
+                <img src="{{ url('uploads/users/' ~ usuario().link_img) }}" alt=""/>
+                {% else %}
+                <img src="{{ url('uploads/users/usergen.jpg') }}" alt=""/>
+                {% endif %}
             </div>
+
         </div>
 
         <div class="dropdown-menu">
@@ -43,7 +48,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="align-items-center text-center">
-                    <img class="align-items-center img-responsive " src="{{ url('templates/admin/assets/img/'~usuario().link_img) }}" alt="" style="border-radius: 50%; max-width: 350px;"/>
+                    <img class="align-items-center img-responsive " src="{{ url('uploads/users/'~usuario().link_img) }}" alt="" style="border-radius: 50%; max-width: 350px;"/>
                 </div>
                 <div class="mt-5 mb-3 mx-3">
                     <h5>E-mail:&nbsp <strong>{{usuario().email}}</strong></h5> 

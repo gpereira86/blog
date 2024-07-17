@@ -1,13 +1,12 @@
 {% extends 'base.html'%}
 
-{% block conteúde %} 
+{% block conteudo %} 
 
-
-<div class="container my-5 pb-4 col">
+<div class="container my-4 mb-5 pb-4" id="containerIndex">
 
     <div class="row">
 
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-9 col-md-12 overflow-y-visible" id="contentIndex">
 
             <!-- INÍCIO CARROUSEL --> 
 
@@ -26,7 +25,7 @@
                         <div class="carousel-caption d-none d-sm-block">
                             <div style="background-color: rgba(0,0,0,0.5)">
                                 <h5>{{slide.titulo}}</h5>
-                                <p>{{resumirTexto(slide.texto, 150)}}<a href="{{url('post/'~slide.slug)}}" class="text-white"> <strong>(Clique aqui para saber mais)</strong></a></p>
+                                <p>{{resumirTexto(slide.texto, 100)}}&nbsp;<a href="{{url('post/'~slide.slug)}}" class="text-white"><strong>(Clique aqui para saber mais)</strong></a></p>
                             </div>
                         </div>
                     </div>

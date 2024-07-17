@@ -8,7 +8,6 @@ use sistema\Nucleo\Sessao;
 use sistema\Modelo\UsuarioModelo;
 use sistema\Controlador\UsuarioControlador;
 
-
 /**
  * Controle Usuario
  * 
@@ -17,7 +16,7 @@ use sistema\Controlador\UsuarioControlador;
  */
 class UsuarioControlador extends Controlador
 {
-    
+
     /**
      * Construtor chama o contrutor do controlador (parente) passando um parâmetro 
      * 
@@ -26,7 +25,7 @@ class UsuarioControlador extends Controlador
     {
         parent::__construct('templates/site/views');
     }
-    
+
     /**
      * Cria sessão de usuário
      * 
@@ -35,12 +34,11 @@ class UsuarioControlador extends Controlador
     public static function usuario(): ?UsuarioModelo
     {
         $sessao = new Sessao();
-        if(!$sessao->checar('usuarioId')){
+        if (!$sessao->checar('usuarioId')) {
             return null;
         }
-        
+
         return (new UsuarioModelo())->buscaPorId($sessao->usuarioId);
-        
     }
 
 }

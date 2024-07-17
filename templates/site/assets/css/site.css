@@ -35,3 +35,11 @@
     padding: 20px;
     text-align: center;
 }
+
+#busca::placeholder {
+    color: white;
+}
+
+#containerIndex{
+    overflow-y: auto;
+}

@@ -33,6 +33,7 @@ class AdminDashboard extends AdminControlador
         $logins = get_object_vars($user->carregar());
         
         echo $this->template->renderizar('dashboard.html', [
+            
             'posts' => [
                 'posts' => $posts->busca()->Ordem('id DESC')->limite(5)->resultado(true),
                 'total' => $posts->busca(null, 'COUNT(id)', 'id')->total(),
@@ -70,6 +71,10 @@ class AdminDashboard extends AdminControlador
     {
         $sessao = new Sessao();
         $sessao->limpar('usuarioId');
+        $sessao->limpar('ip');
+        $sessao->limpar('acao_contadores');
+        $sessao->deletar();
+        
 
         $this->mensagem->informa('Você saiu do painel de controle')->flash();
         Helpers::redirecionar('admin/login');

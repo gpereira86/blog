@@ -16,7 +16,10 @@ use sistema\Biblioteca\Upload;
 class AdminPosts extends AdminControlador
 {
 
-    private ?string $capa;
+    private ?string $capa = null;
+    private string $acaoCadastrar = 'cadastrarPosts';
+    private string $acaoEditar = 'editarPosts';
+    private string $acaoDeletar = 'deletarPosts';
 
     /**
      * API solicita registros em método POST ao BD dos posts | prepara para Datatable
@@ -39,7 +42,6 @@ class AdminPosts extends AdminControlador
             3 => 'categoria_id',
             4 => 'visitas',
             5 => 'status',
-            
         ];
 
         $ordem = " " . $colunas[$datatable['order'][0]['column']] . " ";
@@ -121,11 +123,12 @@ class AdminPosts extends AdminControlador
                 $post->status = $dados['status-form'];
                 $post->capa = $this->capa;
 
-                if ($post->salvar()) {
-                    $this->mensagem->sucesso('Post Cadastrado com Sucesso')->flash();
+                $acao = $this->acaoCadastrar;
+                if ($post->salvar($acao)) {
+                    $this->mensagem->sucesso('Post Cadastrado com Sucesso| ' . Helpers::contadorAcao($acao, 'msg'))->flash();
                     Helpers::redirecionar('admin/posts/listar');
                 } else {
-                    $this->mensagem->erro($post->erro())->flash();
+                    $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' | Erro ' . $post->erro())->flash();
                     Helpers::redirecionar('admin/posts/listar');
                 }
             }
@@ -152,7 +155,7 @@ class AdminPosts extends AdminControlador
 
             if ($this->validarDados($dados)) {
 
-                $post = (new PostModelo())->buscaPorId($id);
+//                $post = (new PostModelo())->buscaPorId($id);
 
                 $post->usuario_id = $this->usuario->id;
                 $post->categoria_id = $dados['categoria-form'];
@@ -176,12 +179,20 @@ class AdminPosts extends AdminControlador
                     $post->capa = $this->capa;
                 }
 
-                if ($post->salvar()) {
-                    $this->mensagem->sucesso('Post atualizado com Sucesso')->flash();
+
+                if ($id <= 99478) {
+                    $this->mensagem->alerta('Post padrão do sistema (Ids: de 1 ao 99.478) não podem ser alterados/excluídos. Para editar/ecluir um post, primeiramente cadastre um novo.')->flash();
                     Helpers::redirecionar('admin/posts/listar');
                 } else {
-                    $this->mensagem->erro($post->erro())->flash();
-                    Helpers::redirecionar('admin/posts/listar');
+
+                    $acao = $this->acaoEditar;
+                    if ($post->salvar($acao)) {
+                        $this->mensagem->sucesso('Post atualizado com Sucesso | ' . Helpers::contadorAcao($acao, 'msg'))->flash();
+                        Helpers::redirecionar('admin/posts/listar');
+                    } else {
+                        $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' | Erro ' . $post->erro())->flash();
+                        Helpers::redirecionar('admin/posts/listar');
+                    }
                 }
             }
         }
@@ -242,23 +253,28 @@ class AdminPosts extends AdminControlador
     public function deletar(int $id): void
     {
 //        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $acao = $this->acaoDeletar;
         if (is_int($id)) {
             $post = (new PostModelo())->buscaPorId($id);
 
             if (!$post) {
                 $this->mensagem->alerta('O post que você está tentando deletar não existe!')->flash();
                 Helpers::redirecionar('admin/posts/listar');
+            } elseif ($id <= 99478) {
+                $this->mensagem->alerta('Post padrão do sistema (Ids: de 1 ao 99.478) não podem ser alterados/excluídos. Para editar/ecluir um post, primeiramente cadastre um novo.')->flash();
+                Helpers::redirecionar('admin/posts/listar');
             } else {
-                if ($post->apagar("id = {$id}")) {
+
+                if ($post->apagar("id = {$id}", $acao)) {
 
                     if ($post->capa && file_exists("uploads/imagens/{$post->capa}")) {
                         unlink("uploads/imagens/{$post->capa}");
                     }
 
-                    $this->mensagem->sucesso('Post deletado com sucesso!')->flash();
+                    $this->mensagem->sucesso('Post deletado com sucesso!  | ' . Helpers::contadorAcao($acao, 'msg'))->flash();
                     Helpers::redirecionar('admin/posts/listar');
                 } else {
-                    $this->mensagem->erro($post->erro())->flash();
+                    $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' | Erro ' . $post->erro())->flash();
                     Helpers::redirecionar('admin/posts/listar');
                 }
             }

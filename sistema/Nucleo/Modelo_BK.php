@@ -301,22 +301,18 @@ abstract class Modelo
      * @param string $termos Os termos da exclusão (cláusula WHERE).
      * @return bool|null Retorna true se a operação for bem-sucedida, ou null em caso de erro.
      */
-    public function apagar(string $termos, ?string $acao = null)
+    public function apagar(string $termos)
     {
-        if (Helpers::validarAcao($acao)) {
+        try {
+            $query = "DELETE FROM " . $this->tabela . " WHERE {$termos}";
 
-            try {
-                $query = "DELETE FROM " . $this->tabela . " WHERE {$termos}";
+            $stmt = Conexao::getInstancia()->prepare($query);
+            $stmt->execute();
 
-                $stmt = Conexao::getInstancia()->prepare($query);
-                $stmt->execute();
-
-                return true;
-            } catch (\PDOException $ex) {
-                Helpers::decrementarAcao($acao);
-                $this->erro = $ex->getCode();
-                return null;
-            }
+            return true;
+        } catch (\PDOException $ex) {
+            $this->erro = $ex->getCode();
+            return null;
         }
     }
 
@@ -349,44 +345,35 @@ abstract class Modelo
     }
 
     /**
-     * Salvar os dados do modelo no banco de dados.
+     * Salva os dados do modelo no banco de dados.
      *
      * Realiza a operação de cadastro se o ID do modelo estiver vazio, ou atualiza os dados se o ID estiver preenchido.
      *
      * @return bool Retorna true se os dados foram salvos com sucesso, false caso contrário.
      */
-    public function salvar(?string $acao = null): bool
+    public function salvar(): bool
     {
-
-        if ($acao == null || Helpers::validarAcao($acao)) {
-
-            // CADASTRAR
-            if (empty($this->id)) {
-                $id = $this->cadastrar($this->armazenar());
-                if ($this->erro) {
-                    $acao != null ? Helpers::decrementarAcao($acao) : null;
-                    $this->mensagem->erro('Erro de sistema ao tentar cadastrar os dados');
-                    return false;
-                }
+        // CADASTRAR
+        if (empty($this->id)) {
+            $id = $this->cadastrar($this->armazenar());
+            if ($this->erro) {
+                $this->mensagem->erro('Erro de sistema ao tentar cadastrar os dados');
+                return false;
             }
-
-            // ATUALIZAR
-            if (!empty($this->id)) {
-                $id = $this->id;
-                $this->atualizar($this->armazenar(), "id = {$id}");
-                if ($this->erro) {
-                    $acao != null ? Helpers::decrementarAcao($acao) : null;
-                    $this->mensagem->erro('Erro de sistema ao tentar atualizar os dados');
-                    return false;
-                }
-            }
-
-            $this->dados = $this->buscaPorId($id)->dados();
-            return true;
-            
-        } else {
-            return false;
         }
+
+        // ATUALIZAR
+        if (!empty($this->id)) {
+            $id = $this->id;
+            $this->atualizar($this->armazenar(), "id = {$id}");
+            if ($this->erro) {
+                $this->mensagem->erro('Erro de sistema ao tentar atualizar os dados');
+                return false;
+            }
+        }
+
+        $this->dados = $this->buscaPorId($id)->dados();
+        return true;
     }
 
     /**

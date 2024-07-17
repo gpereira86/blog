@@ -30,9 +30,9 @@
 
                 <li><a href="{{ url('sobre-nos') }}" class="nav-link px-2 text-white">Sobre</a></li>
             </ul>
-
-            <form data-url-busca="{{ url('buscar') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" name="busca" id="busca" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            
+            <form data-url-busca="{{ url('buscar') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 align-items-center" role="search">
+                <input type="search" name="busca" id="busca" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" style="">
             </form>
 
             <div class="text-end">
@@ -52,7 +52,7 @@
 
                     {% else %}
                     <a class="text-decoration-none" href="{{url('admin/login')}}" style="color: inherit;">
-                    <button type="button" class="btn btn-outline-light me-2">Entrar</button>
+                    <button type="button" class="btn btn-outline-warning me-2">Painel Administrativo</button>
                     </a>
 
                     {% endif %}
@@ -91,7 +91,7 @@
                 <!-- Modal body -->
                 <div class="modal-body" >
                     <div class="align-items-center text-center">
-                        <img class="align-items-center img-responsive " src="{{ url('templates/admin/assets/img/'~usuario().link_img) }}" alt="" style="border-radius: 50%; max-width: 350px;"/>
+                        <img class="align-items-center img-responsive " src="{{ url('uploads/users/'~usuario().link_img) }}" alt="" style="border-radius: 50%; max-width: 350px;"/>
                     </div>
                     <div class="mt-5 mb-3 mx-3">
                         <h5>E-mail:&nbsp <strong>{{usuario().email}}</strong></h5> 

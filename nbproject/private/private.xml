@@ -5,7 +5,7 @@
             <url>sistema/Controlador/SiteControlador.php</url>
             <bookmark id="2">
                 <name/>
-                <line>119</line>
+                <line>120</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,7 +13,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/blog/sistema/configuracao.php</file>
-            <file>file:/C:/xampp/htdocs/blog/sistema/Controlador/Admin/AdminDashboard.php</file>
+            <file>file:/C:/xampp/htdocs/blog/sistema/Controlador/Admin/AdminUsuarios.php</file>
+            <file>file:/C:/xampp/htdocs/blog/sistema/Controlador/Admin/AdminPosts.php</file>
+            <file>file:/C:/xampp/htdocs/blog/sistema/Nucleo/Conexao.php</file>
         </group>
     </open-files>
 </project-private>

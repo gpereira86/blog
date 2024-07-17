@@ -13,7 +13,11 @@ use sistema\Nucleo\Helpers;
  */
 class AdminCategorias extends AdminControlador
 {
-    
+
+    private string $acaoCadastrar = 'cadastrarUser';
+    private string $acaoEditar = 'editarUser';
+    private string $acaoDeletar = 'deletarUser';
+
     /**
      * Renderizar itens para página de categorias do painel (solicita consulta ao BD)
      * 
@@ -51,13 +55,28 @@ class AdminCategorias extends AdminControlador
                 $categoria->titulo = $dados['titulo-form'];
                 $categoria->texto = $dados['texto-form'];
                 $categoria->status = $dados['status-form'];
+                $categoria->slug = Helpers::slug($dados['titulo-form']) . uniqid();
 //                $categoria->cadastrado_em = date('Y-m-d H:i:s');
+//
+//                if (Helpers::validarAcao($acao)) {
+//                    if ($categoria->salvar()) {
+//                        $this->mensagem->sucesso('Categoria cadastrada com Sucesso. | ' . Helpers::contadorAcao($acao) . ' de 5 permitidos.')->flash();
+//                        Helpers::redirecionar('admin/categorias/listar');
+//                    } else {
+//                        Helpers::decrementarAcao($acao);
+//                        $this->mensagem->erro(' O Cadastro ' . (Helpers::contadorAcao($acao) + 1) . ' dos 5 permitidos apresentou o erro código: ' . $categoria->erro() . '.')->flash();
+//                    }
+//                } else {
+//                    $this->mensagem->erro('Número de alterações excedeu o limite. Já utilizou ' . Helpers::contadorAcao($acao) . ' vezes permitidas.')->flash();
+//                    Helpers::redirecionar('admin/categorias/listar');
+//                }
 
-                if ($categoria->salvar()) {
-                    $this->mensagem->sucesso('Categoria cadastrada com Sucesso')->flash();
+                $acao = $this->acaoCadastrar;
+                if ($categoria->salvar($acao)) {
+                    $this->mensagem->sucesso('Categoria cadastrada com Sucesso | ' . (Helpers::contadorAcao($acao, 'msg')))->flash();
                     Helpers::redirecionar('admin/categorias/listar');
                 } else {
-                    $this->mensagem->erro($categoria->erro())->flash();
+                    $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' | Erro ' . $categoria->erro())->flash();
                     Helpers::redirecionar('admin/categorias/listar');
                 }
             }
@@ -96,12 +115,31 @@ class AdminCategorias extends AdminControlador
                 $categoria->status = $dados['status-form'];
                 $categoria->atualizado_em = date('Y-m-d H:i:s');
 
-                if ($categoria->salvar()) {
-                    $this->mensagem->sucesso('Categoria atualizada com Sucesso')->flash();
+//                if (Helpers::validarAcao($acao)) {
+//                    if ($categoria->salvar()) {
+//                        $this->mensagem->sucesso('Categoria atualizada com Sucesso. | ' . Helpers::contadorAcao($acao) . ' de 5 permitidos.')->flash();
+//                        Helpers::redirecionar('admin/categorias/listar');
+//                    } else {
+//                        Helpers::decrementarAcao($acao);
+//                        $this->mensagem->erro(' A alteração ' . (Helpers::contadorAcao($acao) + 1) . ' das 5 permitidas apresentou o erro código: ' . $categoria->erro() . '.')->flash();
+//                    }
+//                } else {
+//                    $this->mensagem->erro('Número de alterações excedeu o limite. Já utilizou ' . Helpers::contadorAcao($acao) . ' vezes permitidas.')->flash();
+//                    Helpers::redirecionar('admin/categorias/listar');
+//                }
+
+                if ($id <= 5) {
+                    $this->mensagem->alerta('Categoria padrão do sistema (Ids: de 1 ao 5) não podem ser alteradas/excluídas. Para editar/ecluir uma categoria, primeiramente cadastre uma nova.')->flash();
                     Helpers::redirecionar('admin/categorias/listar');
                 } else {
-                    $this->mensagem->erro($categoria->erro())->flash();
-                    Helpers::redirecionar('admin/categorias/listar');
+                    $acao = $this->acaoEditar;
+                    if ($categoria->salvar($acao)) {
+                        $this->mensagem->sucesso('Categoria atualizada com Sucesso | ' . Helpers::contadorAcao($acao, 'msg'))->flash();
+                        Helpers::redirecionar('admin/categorias/listar');
+                    } else {
+                        $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' |  Erro ' . $categoria->erro())->flash();
+                        Helpers::redirecionar('admin/categorias/listar');
+                    }
                 }
             }
         }
@@ -141,18 +179,40 @@ class AdminCategorias extends AdminControlador
             if (!$categoria) {
                 $this->mensagem->alerta('A categoria que você está tentando deletar não existe!')->flash();
                 Helpers::redirecionar('admin/categorias/listar');
-                
             } elseif ($categoria->posts($categoria->id)) {
                 $this->mensagem->alerta("A categoria {$categoria->titulo} tem posts cadastrados, dele ou altere os posts antes de deletar!")->flash();
                 Helpers::redirecionar('admin/categorias/listar');
-                
             } else {
-                if ($categoria->apagar("id = {$id}")) {
-                    $this->mensagem->sucesso('Categoria deletado com sucesso!')->flash();
+
+
+
+
+//                if (Helpers::validarAcao($acao)) {
+//                    
+//                    if ($categoria->apagar("id = {$id}")) {
+//                        $this->mensagem->sucesso('Categoria deletada com sucesso. | ' . Helpers::contadorAcao($acao) . ' de 5 permitidos.')->flash();
+//                        Helpers::redirecionar('admin/categorias/listar');
+//                    } else {
+//                        Helpers::decrementarAcao($acao);
+//                        $this->mensagem->erro('A remoção de registro ' . (Helpers::contadorAcao($acao) + 1) . ' das 5 permitidas apresentou o erro código: ' . $categoria->erro() . '.')->flash();
+//                    }
+//                } else {
+//                    $this->mensagem->erro('Número de remoções excedeu o limite. Já utilizou ' . Helpers::contadorAcao($acao) . ' vezes permitidas.')->flash();
+//                    Helpers::redirecionar('admin/categorias/listar');
+//                }
+                
+                if ($id <= 5) {
+                    $this->mensagem->alerta('Categoria padrão do sistema (Ids: de 1 ao 5) não podem ser alteradas/excluídas. Para editar/ecluir uma categoria, primeiramente cadastre uma nova.')->flash();
                     Helpers::redirecionar('admin/categorias/listar');
                 } else {
-                    $this->mensagem->erro($categoria->erro())->flash();
+                $acao = $this->acaoDeletar;
+                if ($categoria->apagar("id = {$id}", $acao)) {
+                    $this->mensagem->sucesso('Categoria deletado com sucesso!  | ' . Helpers::contadorAcao($acao, 'msg'))->flash();
                     Helpers::redirecionar('admin/categorias/listar');
+                } else {
+                    $this->mensagem->erro(Helpers::contadorAcao($acao, 'msg') . ' | Erro ' . $categoria->erro())->flash();
+                    Helpers::redirecionar('admin/categorias/listar');
+                }
                 }
             }
         }

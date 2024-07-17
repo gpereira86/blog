@@ -72,7 +72,7 @@ class Mensagem
      */
     public function informa(string $mensagem): Mensagem
     {
-        $this->css = 'alert alert-primary';
+        $this->css = 'container alert alert-primary';
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
@@ -84,7 +84,9 @@ class Mensagem
      */
     public function renderizar(): string
     {
-        return "<div class='{$this->css}'>{$this->texto}</div>";
+        $botao = '<div class="col-auto"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+        return "<div class='{$this->css}'><div class='row d-flex justify-content-between align-items-center'><div class='col'>{$this->texto}</div> $botao</div></div>";
     }
 
     /**

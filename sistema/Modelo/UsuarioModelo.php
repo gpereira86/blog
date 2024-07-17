@@ -80,14 +80,14 @@ class UsuarioModelo extends Modelo
      * 
      * @return bool
      */
-    public function salvar(): bool
+    public function salvar(?string $acao = null): bool
     {
         if ($this->busca("email = :e AND id != :id", "e={$this->email}&id={$this->id}")->resultado()) {
             $this->mensagem->alerta("O e-mail " . $this->dados->email . " já está em cadastrado");
             return false;
         }
                 
-        parent::salvar();
+        parent::salvar($acao);
 
         return true;
     }

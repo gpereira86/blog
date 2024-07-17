@@ -66,10 +66,18 @@
                         </td>
                         <td>{{usuario.link_img}}</td>
                         
+                        {% if usuario.id > 3 %}
                         <td class="text-center">
                             <a class="btn" href="{{url('admin/usuarios/editar/'~usuario.id)}}"><i class="fa-regular fa-pen-to-square"></i></a>
                             <a class="btn" href="{{url('admin/usuarios/deletar/'~usuario.id)}}"><i class="fa-regular fa-trash-can"></i></a>
                         </td>
+                        {% else %}
+                        <td class="text-center">
+                            <span class="me-3"><i class="fa-solid fa-xmark"></i></span>
+                            <span class="ms-3"><i class="fa-solid fa-xmark"></i></span>
+                        </td>
+                        {% endif %}
+                        
                     </tr>
                     {% endfor %}
                 </tbody>

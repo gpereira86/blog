@@ -80,7 +80,8 @@ class SiteControlador extends Controlador
 
         echo $this->template->renderizar('post.html', [
             'post' => $post,
-            'categorias' => $this->categorias()
+            'categorias' => $this->categorias(),
+            'maisLidos' => (new PostModelo())->busca("status = 1 AND categoria_id = {$post->categoria_id}")->ordem('visitas DESC')->limite(5)->resultado(true),
         ]);
     }
 
@@ -120,6 +121,8 @@ class SiteControlador extends Controlador
             'infoPaginacao' => $paginar->info(),        
             //'posts' => (new CategoriaModelo())->posts($categoria->id),
             'categorias' => $this->categorias(),
+            'maisLidos' => $posts->busca("status = 1 AND categoria_id = {$categoria->id}")->ordem('visitas DESC')->limite(5)->resultado(true),
+                    
         ]);
     }
 

@@ -18,9 +18,6 @@ define('SITE_DESCRICAO', 'Blog - Um projeto acadêmico com alguns toques pessoai
 define('URL_PRODUCAO', 'https://blog.glaucopereira.com');
 define('URL_DESENVOLVIMENTO', 'http://localhost/blog');
 
-//Limite de alterações
-define('QTDE_PERMITIDA', $_ENV['QTDE_PERMITIDA']);
-
 if (Helpers::localhost()) {
     
     define('DB_HOST', 'localhost');
@@ -31,8 +28,6 @@ if (Helpers::localhost()) {
 
     define('URL_SITE', 'blog/');
     define('URL_ADMIN', 'blog/admin/');
-    
-    
     
 } else {
     

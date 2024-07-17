@@ -8,9 +8,11 @@
         <div class="form">  
             <h2 class="text-center">Painel Administrativo</h2>
             <p class="text-center">Informe seu login e senha para entrar no sistema</p>
+
             <span class="text-center">
-            {{ flash() }}
+                {{ flash() }}
             </span>
+
             <form action="{{url('admin/login')}}" method="post">
 
                 <div class="form-group mb-3">
@@ -26,7 +28,8 @@
             </form>
             <br>
             <p class="text-center mb-0">
-                <a href="{{url('/')}}" class="text-decoration-none" style="color: inherit;"> &copy; {{"now"|date("Y")}} - {{constant('SITE_NOME')}}</a>
+                <a href="{{url('/sobre-nos')}}" class="text-decoration-none" style="color: inherit;"> &copy; {{"now"|date("Y")}} - {{constant('SITE_NOME')}}</a>
+                <a href="{{url('/')}}" class="text-decoration-none" style="color: inherit;">&nbsp;|&nbsp;<i class="fa-solid fa-house"></i>&nbsp;Home</a>
             </p>
         </div>
     </div>

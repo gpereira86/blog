@@ -8,15 +8,32 @@ $(document).ready(function () {
         }
     });
 
-    $('#summernote').summernote();
+    $('#summernote').summernote({
+        height: 300, // set editor height
+        minHeight: null, // set minimum height of editor
+        maxHeight: null, // set maximum height of editor
+        focus: true, // set focus to editable area after initializing summernote
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
+    });
 
     Fancybox.bind("[data-fancybox]", {
         hideScrollbar: false
     });
 
-    
+
+
 
 });
+
+
 
 
 
@@ -49,7 +66,7 @@ $(document).ready(function () {
             url: url + 'admin/posts/datatable',
             type: 'POST'
         },
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
         columns: [
             null,
             {

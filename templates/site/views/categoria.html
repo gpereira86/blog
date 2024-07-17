@@ -1,9 +1,8 @@
 {% extends 'base.html'%}
 
-{% block conteúde %} 
+{% block conteudo %} 
 
-
-<div class="container my-5 col">
+<div class="container my-4 mb-5 pb-4 col">
 
     <div class="row">
 
@@ -18,16 +17,16 @@
 
                             <a href="{{url('post/'~post.slug)}}" data-toggle="tooltip" title="{{post.titulo}}" class="text-dark text-decoration-none">
                                 <h5 class="card-title">{{post.titulo}}</h5>
-                                
+
                                 <div class="d-flex justify-content-between my-2 text-muted">
                                     <small>{{ post.categoria.titulo |upper}}</small>
                                     <small>{{ contarTempo(post.cadastrado_em) }}</small>
                                 </div>
-                                
+
                                 {% if post.capa %}
                                 <img class="capaMedia" src="{{url('uploads/imagens/'~post.capa)}}" alt="{{post.titulo}}" title="{{post.titulo}}"/>
                                 {% endif %}                               
-                                
+
                                 <p class="card-text">{{resumirTexto(post.texto, 150)}}</p>
                             </a>
 
@@ -41,29 +40,31 @@
                                 </a>
                             </div>
                             {% endif %}
-                            
+
                         </div>
-                                             
+
                     </div>
                 </div>
 
                 {%endfor%}
-              
+
+                <div>
+                    <p>{{paginacao|raw}}</p>
+                    <p>{{infoPaginacao|raw}}</p>
+                </div>
+
             </div> 
         </div> 
-        
-        
+
+
 
         <div class="col-lg-3">
             {%include'sidebar.html'%}
         </div>             
 
     </div>        
-    
-    <p>{{paginacao|raw}}</p>
-    <p>{{infoPaginacao|raw}}</p>
-    
-     
+
+
 </div>  
 
 {% endblock %}
